@@ -2,7 +2,7 @@
 
 ## Monitoring
 
-- For monitoring application
+- In Kubernetes and GKE, monitoring application across multiple cloud provider.
 
 ## Trace
 
