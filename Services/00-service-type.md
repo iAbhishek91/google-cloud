@@ -2,6 +2,8 @@
 
 ## Type of services
 
+Four main are **compute**, **Storage**, **Big data**, **Machine Learning**.
+
 - Administrative services: Resources and IAM.
 - Computing services
 - Storage services: NoSQL db, SQL DB, File System and Object System.

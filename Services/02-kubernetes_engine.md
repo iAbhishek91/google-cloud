@@ -1,3 +1,3 @@
-# Kubernetes services
+# Kubernetes services (hybrid)
 
 - managed kubernetes service of GCP.
