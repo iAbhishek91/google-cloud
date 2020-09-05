@@ -2,6 +2,7 @@
 
 - Its a CLI tool(similar to Linux bash shell) to interact with GCP.
 - Under the hood it uses GCP SDK to interact with the GCP APIs.
+- It also has inbuilt access to kubectl.
 - this is a small VM which allow you to access GCP resources.
 
 ## How to open cloud shell

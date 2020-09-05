@@ -20,3 +20,18 @@ gcloud compute instances create "my-vm-2" \
 --image "debian-9-stretch-v20170918"
 --subnet "default"
 ```
+
+## GKE
+
+```sh
+# create a cluster called k1
+gcloud container clusters create "k1"
+
+# launch a kubernetes cluster on a specific zone and number of nodes
+gcloud container clusters create "k1" --zone $MY_ZONE --num-nodes 2
+
+# Check the version of kubernetes
+k version
+
+# View the nodes on compute engine that are span for the k8s cluster.
+```

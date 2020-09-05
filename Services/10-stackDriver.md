@@ -1,5 +1,7 @@
 # Stack Driver
 
+Stackdriver comes with alerting and dashboard features as well.
+
 ## Monitoring
 
 - In Kubernetes and GKE, monitoring application across multiple cloud provider.
