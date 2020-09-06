@@ -10,6 +10,8 @@
 - "k autoscale my-deploy --max=5 --min=2 --cpu=80" auto scale deployment easily.
 - also comes with **auto node repair**, **auto scaling**, **auto upgrade**.
 
+> NOTE: Control plane are managed by Google, hence if we say we need 2 node cluster, both the node will be worker nodes. This is a reason its a managed K8s cluster.
+
 ## API thats need to be enabled for GKE
 
 Google Kubernetes Engine API

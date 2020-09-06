@@ -10,6 +10,12 @@ We just need to pay when the function runs in 100milliseconds intervals. No othe
 
 Trigger point ranges from varieties of options, like events on cloud storage, cloud pub/sub or an http calls.
 
-Cloud functions are written in Javascript, managed in NodeJS environments on GCP.
+Cloud functions are written **in Javascript, managed in NodeJS** environments on GCP. Currently it supports Python 3, and Go as well.
+
+The function have well defined entry point and exit points.
 
 Microservices can be entirely implemented in cloud functions.
+
+## Use cases
+
+Event driver applications or micro-services.

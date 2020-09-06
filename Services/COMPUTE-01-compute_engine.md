@@ -20,3 +20,9 @@ Mostly will terminate if their resources are required else where.
 ## what are preemptible VMs
 
 Are VMs which mainly use to run long jobs with no human interactions. Make sure to start and stop the job in case of failure.
+
+## Charge
+
+- Charged in seconds for minimum of 1 minutes.
+- **Sustained use discount** offered if VMs are running for a significant portion of the billing month.
+- **Committed use discount** offered if procurement is based on 1 year or 3 year contract.

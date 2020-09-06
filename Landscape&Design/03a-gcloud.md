@@ -19,6 +19,12 @@ gcloud compute instances create "my-vm-2" \
 --image-project "debian-cloud"
 --image "debian-9-stretch-v20170918"
 --subnet "default"
+
+## Validate the VM
+gcloud compute instances list
+
+## SSH in the VM
+gcloud compute ssh instance-1 --zone asia-south1-a
 ```
 
 ## GKE
