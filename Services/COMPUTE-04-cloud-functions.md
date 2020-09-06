@@ -1,4 +1,4 @@
-# Cloud functions
+# Cloud functions (serverless logic)
 
 - Scenario: There are application which depends on events. For example: There is a function which helps user to uploads images, once the image is uploaded it should be processed in various ways.
 

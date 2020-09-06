@@ -1,4 +1,5 @@
-# Deployment manager
+
+# Deploying manager
 
 Its like ansible or chef or terafrom. The allow you to automate the repetitive task in GCP.
 

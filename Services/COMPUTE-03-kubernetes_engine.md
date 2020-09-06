@@ -1,4 +1,4 @@
-# Google Kubernetes engine
+# Google Kubernetes engine (Hybrid)
 
 - These is Google's managed kubernetes cluster.
 - production ready with HA and comes with SLA.
