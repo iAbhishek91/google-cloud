@@ -1,8 +1,8 @@
 # Storage
 
 - known as cloud storage.
-- It keeps unstructured data.
-- Its a binary object storing system.
+- It keeps **unstructured data**.
+- Its a **binary object** storing system.
 - Very similar to S3. and hence their name are globally unique.
 - These unique keys are in form of URL and work well with web technologies.
 - accessed using clod storage API.
@@ -25,12 +25,12 @@
     - No data transfer cost
   - *Nearline* (99% available)
     - Used for backup and archival storage. (in frequently access data)
-    - Use cases: Long tail content, (updated or read mostly once a month or less), Continuously add data, but access later for analysis.
+    - Use cases: Long tail content, (updated or read mostly **once a month or less**), Continuously add data, but access later for analysis.
     - Low cost, highly durable solution.
     - data transfer per GB cost is higher.
   - *Coldline* (99% available)
     - Used for backup and archival storage.
-    - Use cases: access those data at most once a year.
+    - Use cases: access those data at most **once a year**.
     - very store low cost, highly durable.
     - data transfer per GB cost is highest.
 
