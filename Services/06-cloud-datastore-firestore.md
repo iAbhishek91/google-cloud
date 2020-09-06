@@ -11,7 +11,7 @@
 - highly available
 - highly durable
 - *Unlike cloud-bigtable*: cloud-datastore supports transactions which impact multiple rows.
-- its lets you perform SL like queries.
+- its lets you perform SQL like queries.
 - free daily quotas: few small operations(storage, reads, writes and deletes) can be performed without any charge.
 
 - **use cases**: store data structure data from app engine apps.
