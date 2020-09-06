@@ -18,4 +18,4 @@ They are very responsive to health of the application, failover etc.
 - Global SSL Proxy: Layer 4 load balancing of non HTTPs SSL traffic based on load. Supported on specific port number.
 - Global TCP Proxy: Layer 4 non SSL TCP traffic. supported on specific port number.
 - Regional: Load balancing of any traffic (TCP and UDP). Supports any port number.
-- Regional internal: Load balancing of traffic inside VPC. Use for the internal tiers of multi-tier application.
+- Regional internal: Load balancing of traffic inside VPC. Use for the internal tiers of multi-tier application. Layer-4 load balancers.

@@ -45,6 +45,17 @@ Unit size | 1 MB/entity | ~ 1- Mb/cell, ~ 100Mb/row | 5 TB/obj | Determined by D
 | *N/W access* | via App engine service | Yes |
 | *Pricing model* | After free daily use, pay per instance class, wioth automatic shutdown | Pay for resource allocation per hour, no automatic shutdown |
 
+## Compare different network services with feature and use cases
+
+| Services | key features | Use Case |
+|---|---|---|
+| HTTP(s) Load balancing | Global load balancing of HTTP(s) endpoints | CMS deployed in multiple regions |
+| TCP Load Balancing | Regional load balancing of TCP/UDP endpoints | Distribute traffic evenly across gaming backend service |
+| VPC | Private network within GCP | Deployed GCE VMs that are not exposed to the public internet |
+| Cloud Interconnect | Dedicated network to extend local data center | Access cloud resoruces from local application with low latency |
+| Cloud VPN | Secure access to GCP resrouces through public internet | Cheaper option to extent local data center to cloud |
+| Peering | Directly access cloud resources with reduce egress fee | Secure access to GCP and G suite resoruces via direct or carrier peering |
+
 ## What are difference between GKE and App engine
 
 | # |K8s engine | App Engine Flexible | App Engine Standard |
@@ -52,3 +63,26 @@ Unit size | 1 MB/entity | ~ 1- Mb/cell, ~ 100Mb/row | 5 TB/obj | Determined by D
 | *Language support* | Any | Any | Java, Python, Go, PHP |
 | *Service model* | Hybrid | PasS | PaaS |
 | *Primary use case* | Container-based workloads | web and mobile app, container-based workloads | web and mobile applications |
+
+## do GCP uses same network as Google
+
+GCP provides two service tiers for traffic optimization: **standard**, **premium**.
+
+Two type Standard and Premium services tiers provides trade off between performance and cost.
+
+Premium is similar to Google's premier network backbone, however standard regular connectivity based on ISP based networks.
+
+However premium is default.
+
+[Ref](https://cloud.google.com/network-tiers/docs/overview)
+
+## How to create multiple compute engine with same config
+
+1. Create an instance template
+2. Create an instance group
+
+## How to make sure that load balancer always route traffic to healthy VMs
+
+- Configure health check for each VMs that are pointed by load balancers.
+- When configuring the load balancer backend section select the health check that was created on previous step.
+- validate the healthy nodes once the load balancer starts under healthy column. Thats it.

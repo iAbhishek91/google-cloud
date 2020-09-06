@@ -4,6 +4,8 @@ Virtual Private cloud - allow you to define a virtual private network on GCP. Or
 
 **VPC are just like routing tables, which allow routing(forward traffic) b/w one instance to another with in the same network or across sub networks and between GCP zones without any external IP address**. No need to manage a routing table or a router, those are managed by GCP.
 
+> Note: VPC is software defined network, no hardware are used to create these networks.
+
 ## Features
 
 - control ingress and egress traffic.
@@ -11,14 +13,18 @@ Virtual Private cloud - allow you to define a virtual private network on GCP. Or
 - segment the network
 - categorize the resources using tags and apply firewall rules.
 - how they are connected with internet.
+- VPC are securely connected in hybrid env using cloud VPN or cloud interconnect.
 
 ## Connection between VPCs
 
+- Also VPC are logically isolated from each other.
 - connection between VPCs are done using VPC peering.
 - we can share and manage access b/w VPCs provided IAM, this is known as shared VPC.
 
 ## Scope
 
 VPC have a global scope. and subnets are regional and spans several zones.
+
+> Subnet can be private or public. Resources under private subnet are not shared with outside world.
 
 > NOTE: when we increase the subnet size of a custom VPC, assigned IP address of the Cloud compute engine are not effected.
