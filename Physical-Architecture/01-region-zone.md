@@ -1,6 +1,6 @@
 # Physical Architecture
 
-Region are geographic areas consists of zones. At least 160 km difference between the zones.
+Region are geographic areas, consists of zones. At least 160 km difference between the zones.
 
 Zones are deployment areas of GCP within a region.
 Zones are single failure domain within a region.
@@ -8,6 +8,10 @@ However, Zone mostly consist of multiple data center or building.
 To deploy application in HA mode, app need to be deployed on multiple zones.
 
 Disaster recovery plan is a plan of recovering data and services in case or entire region failure (for example: due to natural resources).
+
+## Network edge locations
+
+- to delivers the static content to other application.
 
 ## Type of resources
 
