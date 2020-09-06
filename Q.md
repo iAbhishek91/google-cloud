@@ -1,5 +1,9 @@
 # Questions
 
+## launching URL of google cloud
+
+`https://cloud.google.com`
+
 ## Where we can find the events triggered by some service
 
 - "Activity list" tab of the GCP console.
