@@ -10,6 +10,7 @@
 
 - Big table are **useful** for database with single lookup keys. They also popularly used as a persistent hash tables.
 - is popular for operational and analytical system like IoT, Financial analysis etc.
+- act as a storage engine for MapReduced operations, stream processing and machine learning applications
 
 - **accessed** using open source HBase API. *Native database for Apache hadoop, HBase is a open source project managed by Apache Hadoop*.
 - Same API are useful in increasing portability.

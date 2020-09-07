@@ -12,6 +12,7 @@
 - Users can run own instance of database services on cloud-engine(many user does that), however its better to use managed services.
 
 - **Google security**: firewalls, encryptions when stored in backups, tables.
+- Also cloud SQL instance may be launched within VPC for additional security.
 
 - **integration with other GCP services**:
   - integrated with *App engine* using standard drivers.

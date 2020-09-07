@@ -27,6 +27,13 @@ gcloud compute instances list
 gcloud compute ssh instance-1 --zone asia-south1-a
 ```
 
+## cloud SQL
+
+```sh
+# connect to sql instance
+gcloud sql connect demo-db # enter the password to connect.
+```
+
 ## GKE
 
 ```sh
