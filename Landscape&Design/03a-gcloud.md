@@ -34,9 +34,24 @@ gcloud compute ssh instance-1 --zone asia-south1-a
 gcloud sql connect demo-db # enter the password to connect.
 ```
 
-## GKE
+## GKE and cloud registry
 
 ```sh
+# Enable container API
+gcloud services enable containerregistry.googleapis.com
+
+# pull from docker hub
+docker pull busybox
+
+# Create a new image from the docker file
+docker build .-t mybusybox
+docker tag mybusybox gcr.io/$PROJECT_ID/mybusybox:latest
+docker run gcr.io/$PROJECT_ID/mybusybox:latest
+
+# upload in google container registry
+gloud auth configure-docker
+docker push gcr.io/$PROJECT_ID/mybusybox:latest
+
 # create a cluster called k1
 gcloud container clusters create "k1"
 
