@@ -2,11 +2,22 @@
 
 These services helps you to manage the cost and provide dashboard for viewing the GCP bills.
 
+## Biller Account
+
+- This is account act as a billing administrator.
+- To change a billing account of a project one need owner access and a billing administrator on the billing account.
+- Projects are linked to billing accounts.
+- If you have one billing account, then automatically all project are linked to billing account.
+- If you don't have a billing account you must create one to consume service.
+
 ## Budget and alerts
 
-- Configure budget per GCP account or per GCP projects.
+- Configure budget per GCP billing account or per GCP projects.
 - Budget can be a fixed limit or can tie it to a another metric(% of previous month spend).
 - Create an alert when bill reaches your budget limits.
+- To create budget alert, you must be a billing administrator.
+
+> NOTE: Setting a budget does not cap API usage.
 
 ## Billing export
 

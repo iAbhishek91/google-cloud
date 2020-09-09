@@ -8,7 +8,7 @@
 - use of google cloud console.
 - CLI interface to perform common platform-based tasks to maintain one or more deployed solutions that leverage manged or self managed services on GCP.
 
-E2S (s)he should be:
+E2E (s)he should be:
 
 - Set up cloud solution environment
 - Plan and configure a cloud solution
@@ -28,6 +28,14 @@ none
 
 [Docs](https://cloud.google.com/certification/cloud-engineer)
 
+## Study guide
+
+Qwiklab: Google Cloud Fundamentals: Core Infrastructure
+Qwiklab: Architecting with Google Cloud Platform: Infrastructure
+Udemy: Google Cloud Platform (GCP) Fundamentals for Beginners(Janakiram MSV)
+Udemy: Google Associate Cloud Engineer: Get Certified 2020 (Dan Sullivan)
+Udemy: Linux Commands Line Basics(Ahmed Alkabary)
+
 ## Main modules and topics to know in depth
 
 - *setting up a cloud solution env*
@@ -42,7 +50,7 @@ none
 - *Planning and configuring a cloud solution*
   - **planning and estimate GCP product use using price calculator**
   - **planning and configure compute resources**
-    - select appropriate compute choice for a given workload (compute engine, GKE, App Engine flxible, Cloud Run, Cloud Functions)
+    - select appropriate compute choice for a given workload (compute engine, GKE, App Engine flexible, Cloud Run, Cloud Functions)
     - Using preemptible VMs and custom machine types as appropriate.
   - **Planning and configuring data storage options**
     - cloud SQL, BigQuery, Cloud Spanner Cloud Bigtable)
@@ -110,7 +118,7 @@ none
     - Backing up and restoring data instances
     - Reviewing job status in cloud dataproc, cloud dataflow or big query
     -working with management interfaces (cloud console, cloud shell, cloud SDK)
-- *Access and security*
+- *Configuring access and security*
   - **IAM**
     - Assign user predefined IAM roles within a project
     - IAM role assignment
@@ -120,3 +128,12 @@ none
     - Assigning svc accounts to VM
     - granting access to svc account in another project
     - viewing audit logs for project and manged services
+
+## Reference
+
+[Google Cloud Platform Overview:](https://cloud.google.com/docs/overview/)
+[Google Cloud Identity:](https://cloud.google.com/identity/)
+[Google Cloud Pricing Calculator:](https://cloud.google.com/products/calculator/)
+[Google Cloud Billing documentation:](https://cloud.google.com/billing/docs/)
+[Cloud SDK installation and quick start:](https://cloud.google.com/sdk/#Quick_Start)
+[gcloud tool guide:](https://cloud.google.com/sdk/gcloud/)

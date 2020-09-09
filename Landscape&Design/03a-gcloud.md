@@ -1,5 +1,77 @@
 # gcloud
 
+It is the primary CLI tools to create and manage Google Cloud resources.
+
+gcloud CLI version is same as the SDK.
+
+Few examples, create and manage:
+
+- compute engine VM instance and other res
+- cloud SQL instance
+- GKE cluster
+- cloud dataproc cluster and jobs
+- cloud DNS managed zones and record sets
+- cloud Deployment manager deployments
+
+- deploy App engine application
+- manage authentication
+- customize local configuration
+
+## Cheat sheet
+
+[Cheat sheet](https://cloud.google.com/sdk/docs/cheatsheet)
+[Practice](https://ssh.cloud.google.com/cloudshell/editor?page=editor&_ga=2.62336426.702647180.1599546622-709608325.1596613385&_gac=1.93400687.1596613385.CjwKCAjwsan5BRAOEiwALzomX4P0FSrVgDyfLlilFkWE5WIykwC79JXGYy8bzTet51qSl_pgH6_K5xoCtrYQAvD_BwE)
+
+## Syntax
+
+gcloud GROUP | COMMAND \[--account=ACCOUNT\] \[--billing-project=BILLING_PROJECT\] \[--configuration=CONFIGURATION\] \[--flags-file=YAML_FILE\] \[--flatten=[KEY,…\]\] \[--format=FORMAT\] \[--help\] \[--project=PROJECT_ID\] \[--quiet, -q\] \[--verbosity=VERBOSITY; default="warning"\] \[--version, -v\] \[-h\] \[--impersonate-service-account=SERVICE_ACCOUNT_EMAIL\] \[--log-http] \[--trace-token=TRACE_TOKEN\] \[--no-user-output-enabled\]
+
+ref for all details: [gcloud docs](https://cloud.google.com/sdk/gcloud/reference)
+
+## Help
+
+--help provide detail help about the command
+-h one line summery of the command
+
+## Properties
+
+Properties are like parameter which governs the behavior of the gcloud CLI and other SDK.
+
+Two way we can pass properties, using global or can be set using command flag using "-". Value of flag takes precedence.
+
+## Configuration
+
+Configuration is named set of properties. Default is a named configuration that is used by default.
+
+## Suppressing prompt
+
+--quiet or -q
+
+- Disable all interactive prompt
+- In events of inputs is needed, defaults will be used. If there is no default err will be raised.
+- Useful when scripting
+
+## Suppressing writing to terminal
+
+--no-user-output-enabled
+
+- supressing printing command output to std output and std err.
+
+## Logging
+
+--verbosity
+
+- adjust verbosity to appropriate level (debug, info, warning, error, critical or none)
+
+## output format
+
+The output is by default pretty printed to std output.
+
+--format
+
+- provide required format (json, csv, yaml, table, value, etc...)
+- we can also use projections and filter.
+
 ## Zone
 
 ```sh

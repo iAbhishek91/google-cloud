@@ -1,5 +1,13 @@
 # Stack Driver
 
+Stack Driver manages resources across different platform: AWS, GCP, On-Premise.
+
+Stack driver are already integrated with many GCP services like: Compute engine, App Engine, BigQuery, Cloud Datastore, GKE, Cloud Pub/Sub, cloud SQL and many more.
+
+Stack driver logs are stored for limited number of days. For admin activity logs are kept for 400 days, and data access audit logs are kept for only 30 days.
+
+However we can export logs for analysis and store it in persistent storage if required.
+
 Below are the components available under stack drivers.
 
 ## Monitoring

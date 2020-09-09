@@ -8,6 +8,8 @@ CLI form of SDK is installed on cloud shell, hence we can just use it.
 
 SDK available for local use as well, hence we can use it from local system.
 
+Also available as a docker image, hence its easy if your application are containerized.
+
 ## SDK commands
 
 ### gcloud

@@ -25,7 +25,7 @@
 ## Projects identifying attributes
 
 - Project ID (globally unique, chosen by customer, immutable)
-- Project Name (can be anything, chosen by customer, immutable)
+- Project Name (can be anything, chosen by customer, mutable)
 - Project Number (globally unique, assigned by GCP, immutable)
 
 ## How to create an organization node
