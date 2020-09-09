@@ -16,3 +16,22 @@
 
 Google Kubernetes Engine API
 and Google Artifact registry API
+
+## Attribute for pricing
+
+- Total number of nodes
+- \# of zonal cluster: one is free
+- \# of regional cluster
+- Machine type: Regular or Preemptible
+- Machine family: General purpose, compute-optimized, memory-optimized
+- Series: N1, E2..
+- Machine Type: n1-standard-16
+- Local SSD
+- Location(region)
+- avg hours /day
+- avg days/week
+- persistent disk details
+
+> Note: Anthos GKE clusters are exempted from GKE cluster management fee.
+
+You will be charged for the VMs, and cluster management fee.

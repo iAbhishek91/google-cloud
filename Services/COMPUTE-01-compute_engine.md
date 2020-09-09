@@ -15,14 +15,39 @@ from Console or GCloud command line tool.
 
 ## Normal VMs
 
-Mostly will terminate if their resources are required else where.
+Dedicated VMs, it will not be terminated if its required else where.
 
 ## what are preemptible VMs
 
-Are VMs which mainly use to run long jobs with no human interactions. Make sure to start and stop the job in case of failure.
+- These VMs can be taken away anytime if they are required anywhere else.
+- its a good way to same money, as they are cheaper.
+- **use cases**: VMs which mainly use to run long jobs with no human interactions. Make sure to start and stop the job in case of failure.
 
 ## Charge
 
 - Charged in seconds for minimum of 1 minutes.
 - **Sustained use discount** offered if VMs are running for a significant portion of the billing month.
 - **Committed use discount** offered if procurement is based on 1 year or 3 year contract.
+
+## Attributes required for VM
+
+### Instance
+
+- Number of instance
+- OS
+- Machine Class
+- Machine Family
+- Series
+- Machine type
+- local SSD
+- location
+- ephemeral IP
+- static IP
+- avg running hours
+- avg number of days in a week
+
+## Self tenant nodes
+
+## Persistent Disk
+
+## Cloud TPUs
