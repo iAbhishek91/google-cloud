@@ -39,3 +39,31 @@ Below are the components available under stack drivers.
 - notifies users about the errors.
 
 ## Profilers (BETA)
+
+## Installing Stack driver agent with VM instances
+
+[GCP Docs](https://cloud.google.com/monitoring/agent/installation?_ga=2.259618700.-709608325.1596613385&_gac=1.83054052.1596613385.CjwKCAjwsan5BRAOEiwALzomX4P0FSrVgDyfLlilFkWE5WIykwC79JXGYy8bzTet51qSl_pgH6_K5xoCtrYQAvD_BwE#agent-install-debian-ubuntu)
+
+### Features
+
+- Agent gathers system and application metrics from your VM instances and sends them to Monitoring.
+- can be installed on compute engine and EC2 instances.
+
+### Installation
+
+- make sure, 250 Mb of main memory on the VM | supported OS version
+- Download & execute the shell script for downloading and installing the agent.
+- restart the service of the agent.
+- may delete the script as its not required any more.
+
+## Access the logs
+
+- Validate the stack driver agent is up and running.
+- validate the log folder in the VMs.
+
+```sh
+sudo service stackdriver-agent status
+sudo grep collected /var/log/(syslog,message}) | tail
+```
+
+- Navigate to monitoring from cloud and go to the dashboard to verify the logs are getting generated.

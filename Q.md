@@ -4,9 +4,16 @@
 
 `https://cloud.google.com`
 
+## what is relation between Project and Region
+
 ## Where we can find the events triggered by some service
 
 - "Activity list" tab of the GCP console.
+- The specify the action in detail, what action, by whom and when
+
+## Where we can find any recommendation based on our cloud use
+
+Under cloud console, under recommendation tab.
 
 ## Explain in details gcloud & gsutil command
 
@@ -21,6 +28,23 @@
 Based on the processing powers are required only when we require huge computing power.
 
 However using small VMs are better when we use have option to split the processing power.
+
+## What are the ways we can mitigate VMs unavailability
+
+- **Regional MIG**: distributes your VMs across multiple zone.
+- **Auto Healing**: to recreate a failed VM. (For auto-healing, VM state is not sufficient, you may want to recreate th eVM is application fails, crashes or run out of memory)
+- **Load Balancing** to direct user not the healthy VMs.
+
+> Note: Autoscaling is not a good option in case of failure.
+
+## What is the correct size of regional MIG
+
+Google recommends to over-provision your VM based on the application needs, so that in case of failure of a zone, the entire group should not fail. or more than expected VMs are not available.
+
+## How to update image template, what are the limitation
+
+INCOMPLETE
+https://cloud.google.com/compute/docs/instance-groups/autohealing-instances-in-migs#autohealing_behavior
 
 ## Compare all the storage options provided by GCP
 
