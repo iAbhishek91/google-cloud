@@ -6,12 +6,12 @@
 
 ## what is relation between Project and Region
 
-## Where we can find the events triggered by some service
+## Where we can find the events triggered by some service by user or by GCP
 
 - "Activity list" tab of the GCP console.
 - The specify the action in detail, what action, by whom and when
 
-## Where we can find any recommendation based on our cloud use
+## Where we can find any GCP recommendation based on our cloud use
 
 Under cloud console, under recommendation tab.
 
@@ -28,6 +28,64 @@ Under cloud console, under recommendation tab.
 Based on the processing powers are required only when we require huge computing power.
 
 However using small VMs are better when we use have option to split the processing power.
+
+## There are multiple storage options for a VM (mentioned in Persistent-disk.md), which option to choose when
+
+In most of the scenario the common option recommended by google is to add a persistent disk to your VM.
+
+for critical data, choose **Regional Block storage** else **Zonal block storage** for redundancy.
+
+for high performance additionally we can choose **local storage**.
+
+for better performance of the choose SSD over HDD
+
+if application is not concerned with latency, cloud-storage is best option.
+
+## What are the options to connect cloud storage
+
+either using API posting data using SDK or we can  use *cloud storage Fuse* tool to mount a cloud storage bucket to your compute engine instance.
+
+> NOTE: Cloud storage is a object storage but like a block storage in this case.
+
+## List the event on which Local SSD data will be persisted
+
+- reboot of guest OS
+- host goes through maintenance event, and live migration is configured
+- if host system experience a host error, compute engine makes a best effort to reconnect to the VM and preserve local SSD (Note this do NOT come with 100% guarantee)
+
+## list the event on which Local SSD data will not b persisted
+
+- manual stop of VM
+- shutdown of OS with force stopping the VMs
+- preemptible VM going through preemption process
+- if "stop on host maintenance events" is configured, and instance goes though a host maintenance event.
+- if host system experience a host error, and do not recover with 1 hour, compute engine  does not attempt to preserver the data on your local SSD.
+- misconfiguration of local SSD so that it becomes unreachable.
+- disable project billing. the instance will stop and data will be lost.
+
+## Where do local SSD physically located
+
+On the same server(hardware) where the VMs is hosted. Hence they can be created only when instance is created and cannot be used as boot device. Before use we need to format and mount the disk.
+
+## How many number of local SSD can be configured
+
+It depends on machine type you can attach 1 - 8, 16 or 24 max local SSD to single VM. *For example: all N1 machine type allow 1-8,16 or 24 | N2 machine type with 2 to 10 vCPU allow 1,2,4 or 8 | N2 machine type with 42 to 80 vCPU allow 8*
+
+## How to persist data from local block storage on some other media
+
+Manually we one need to perform that task.
+
+## What are the constraints of taking snapshot of a VM which have local SSD
+
+The problem happens when snapshot is taken on a VM which has /etc/fstab configured with local SSD and try to mount in a another VM.
+
+As remedy we have to remove the entry of local SSD from the fstab before loading the snapshot on another VM.
+
+## Local SSD performance is better than Persistent storage, but is there any other factors to improve the performance
+
+Yes, local SSD connects with VM using SCSI or NVMe interfaces. The interface driver should be available in the OS image we are using to create the VM. NVMe is faster than SCSI (max IOPS R/W of NVMe 2,400,000/1,200,000, R/W of SCSI is 900,000/800,000)
+
+To get max performance, attach multiple local devices(16 to 24), group them using logical volume. Consider using VM with 32 or more vCPU.
 
 ## What are the ways we can mitigate VMs unavailability
 
