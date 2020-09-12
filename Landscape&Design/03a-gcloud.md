@@ -109,7 +109,7 @@ gcloud sql connect demo-db # enter the password to connect.
 ## GKE and cloud registry
 
 ```sh
-# Enable container API
+# Enable container API, when we do it from UI(cloud console) it is automatically enable when we open kubernetes engine.
 gcloud services enable containerregistry.googleapis.com
 
 # pull from docker hub
@@ -134,6 +134,56 @@ gcloud container clusters create "k1" --zone $MY_ZONE --num-nodes 2
 k version
 
 # View the nodes on compute engine that are span for the k8s cluster.
+```
+
+```sh
+# create a node pool with all possible options available
+# default machine type: e2-medium
+# default num-nodes: 3
+# get the valid image type(specific to a location): "gcloud container get-server-config --region us-central1"
+# refer min-cpu-platform notes on GKE.md file, find min-cpu-platform availability gcloud compute zones describe ZONE_NAME
+# disk-type is pd-standard o=OR pd-ssd
+# disk-size is 10GB
+# max-surge-upgrade is no of extra nodes to be created on each upgrade of the node pool
+# service account that are will be part of the VM
+gcloud container node-pools create my-pool \
+--cluster gke-k8s-cluster \
+--zone europe-west1-c \
+--machine-type e2-small \
+--num-nodes 1
+--image-type COS
+--min-cpu-platform "Intel Cascade Lake"
+--node-locations=[ZONE1, ZONE2]\
+--disk-type=pd-standard
+--disk-size=10GB
+--max-pod-per-node=50
+--max-surge-upgrade=1
+--preemptible
+--max-nodes=18
+--max-nodes=12
+--service-account=svc-acc
+--node-taints=key1=val1:NoSchedule, key2=value2:NoExecute
+--node-labels=label1=value1,label2=value2
+# view all the node-pools on a cluster
+gcloud container node-pools list --cluster cluster cluster-name
+
+# to view the details of a specific node-pools
+gcloud container node-pools describe pool-name --cluster cluster-name
+
+# resizing a node-pool, if only default node-pool is there, then omit --node-pool
+gcloud container clusters resize cluster-name --node-pool pool-name --num-nodes 2
+
+# upgrading node pool to same version as master
+gcloud container clusters upgrade cluster-name
+# upgrading node pool to specific version
+gcloud container clusters upgrade cluster-name --node-pool pool-name
+
+# deploy a pod to a specific node-pool (in pod yaml)
+nodeSelector:
+  cloud.google.com/gke-nodepool: nodepool-name
+
+# deleting a node pool
+gcloud container node-pools delete pool-name --cluster cluster-name
 ```
 
 ## Deployment manager
