@@ -3,6 +3,7 @@
 ## What are projects
 
 - Projects are cloud resources that are managed as an administrative unit.
+- GCP resources can only be created and consumed under a project.
 - Its also a represent a billable unit. Allocate a credit card to a project and every resources under a project can be billed from that.
 - There are limits (23) in the number of project we can create by default. It can be increased by requesting GCP.
 - We can group resources which have common business objectives. **resources >> VMs**
@@ -34,3 +35,9 @@ Answer depends on if your organization have a G-suite enrolled.
 
 - if yes, automatically everything will be under an organization.
 - else, you can use google cloud identity to create one.
+
+## Shutting down a project
+
+- Shutting down a project is non-reversible.
+- Shutting down is a scheduled activity, which will delete the project after 30 days.
+- All the resources and billing will be stopped.
