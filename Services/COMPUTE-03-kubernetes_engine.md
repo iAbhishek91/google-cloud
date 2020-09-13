@@ -26,7 +26,7 @@
 ## API thats need to be enabled for GKE
 
 Google Kubernetes Engine API
-and Google Artifact registry API
+and Google container registry API
 
 ## Attribute for pricing
 
