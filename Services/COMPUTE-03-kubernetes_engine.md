@@ -127,6 +127,8 @@ GCP provides a feature called **VPC Native POD IP address(IP aliasing)** where a
 **Stackdriver kubernetes monitor** it can monitor nodes, and kubernetes resources as well.
 
 - to start stack driver monitoring, first check the "stackdriver kubernetes engine monitoring" is enabled or not in cluster details. "legacy stackdriver logging" & "legacy stackdriver monitoring" is disabled. We can modify this setting even after creating the cluster.
+- the above configuration will start monitoring on stack driver. Stackdriver >> resources >> kubernetes engine.
+- there are three views: INFRA | WORKLOAD | SERVICES
 
 **CI/CD** use cloud build which is a serverless fully managed, with multiple build minutes for free.
 

@@ -3,7 +3,12 @@
 - Its a CLI tool(similar to Linux bash shell) to interact with GCP.
 - Its comes with GCP SDK to interact with the GCP APIs.
 - It also has inbuilt access to kubectl.
-- this is a small VM which allow you to access GCP resources.
+- Small VM(compute engine) which allow you to access GCP resources.
+- It is always accessed through browser.
+- 5GB of persistent disk
+- Language support: Java, Go, Python Node.JS, PHP, & Ruby
+- Built in authorization for access to res and instances.
+- After one hour of inactivity cloud shell instance is recycled. only /home directory persist.
 
 ## How to open cloud shell
 

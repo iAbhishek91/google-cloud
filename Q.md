@@ -4,6 +4,10 @@
 
 `https://cloud.google.com`
 
+## what is the primary customer benefit of measured service
+
+Measured service is one of the main paradigm of cloud computing, where customer can provision, use and pay for the amount of resources consumed. every thing on demand.
+
 ## what is relation between Project and Region
 
 ## Where we can find the events triggered by some service by user or by GCP
@@ -14,6 +18,10 @@
 ## Where we can find any GCP recommendation based on our cloud use
 
 Under cloud console, under recommendation tab.
+
+## what level in GCP resource hierarchy is billing setup
+
+at project level
 
 ## Explain in details gcloud & gsutil command
 
@@ -103,6 +111,14 @@ Google recommends to over-provision your VM based on the application needs, so t
 
 INCOMPLETE
 https://cloud.google.com/compute/docs/instance-groups/autohealing-instances-in-migs#autohealing_behavior
+
+## what are frequency of compute engine's VM
+
+There are two type of maintenance type:
+
+- **host maintenance**: kernel and hardware upgrade. Once every two week. Live migration is required.
+
+- **lightweight**: hypervisor or network stack upgrade. 1-2 times per week. Live migration is not required.
 
 ## Compare all the storage options provided by GCP
 

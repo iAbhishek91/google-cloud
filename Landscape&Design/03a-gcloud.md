@@ -43,6 +43,14 @@ Two way we can pass properties, using global or can be set using command flag us
 
 Configuration is named set of properties. Default is a named configuration that is used by default.
 
+```sh
+# list all the config.
+gcloud config list
+
+# change the project
+gcloud config set project [PROJECT_ID]
+```
+
 ## Suppressing prompt
 
 --quiet or -q
@@ -82,6 +90,24 @@ gcloud compute zones list | grep us-central1
 gcloud config set compute/zone us-central1-c
 ```
 
+## Auth
+
+```sh
+# gcloud command is performed by a logged in user(account)
+# If the user do not have any permission to any resource the command will fail.
+# However we can change the account that is being currently used to high privilege account.
+gcloud auth activate-service-account --key file credentials.json
+
+## validate the above change
+gcloud config list
+
+## to validate the list of all validated user in cloud shell. Note only one will be active at a time.
+gcloud auth list
+
+## to change the active account
+gcloud config set account [username]
+```
+
 ## VM
 
 ```sh
@@ -97,6 +123,9 @@ gcloud compute instances list
 
 ## SSH in the VM
 gcloud compute ssh instance-1 --zone asia-south1-a
+
+# Copy files from cloud shell VM to another VM
+gcloud compute scp index.html first-vm:index.nginx-debian.html --zone=us-central1-c
 ```
 
 ## cloud SQL
@@ -104,6 +133,59 @@ gcloud compute ssh instance-1 --zone asia-south1-a
 ```sh
 # connect to sql instance
 gcloud sql connect demo-db # enter the password to connect.
+```
+
+## IAM
+
+```sh
+# list only the services that are enabled
+gcloud services list
+gcloud services list --enabled
+
+# list only the services those are available to project to enable
+gcloud services list --available
+
+# enable iam API
+gcloud services enable iam.googleapis.com
+
+# create service account
+gcloud iam service-accounts create svc-ac-name \
+--display-name "svc-ac-1" \
+--description "svc account with editor role"
+
+# view the list of policies assigned to the project (policies are binding between identity and roles)
+gcloud projects get-iam-policy $GOOGLE_CLOUD_PROJECT
+#- members:
+#  - user:abhi.das2007das@gmail.com
+#  role: roles/billing.projectManager
+#- members:
+#  - user:abhi.das2007das@gmail.com
+#  role: roles/compute.admin
+#- members:
+#  - serviceAccount:service-911427390672@compute-system.iam.gserviceaccount.com
+#  role: roles/compute.serviceAgent
+#- members:
+#  - serviceAccount:service-911427390672@container-engine-robot.iam.gserviceaccount.com
+#  role: roles/container.serviceAgent
+#- members:
+#  - serviceAccount:911427390672-compute@developer.gserviceaccount.com
+#  - serviceAccount:911427390672@cloudservices.gserviceaccount.com
+#  - serviceAccount:service-911427390672@containerregistry.iam.gserviceaccount.com
+#  role: roles/editor
+#- members:
+#  - user:abhi.das2007das@gmail.com
+#  role: roles/owner
+#- members:
+#  - user:abhi.das2007das@gmail.com
+#  role: roles/recommender.billingAccountCudAdmin
+
+# grant the service account with project viewer role
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
+--member serviceAccount:svc-ac-name@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com \
+--role roles/viewer
+#- members:
+#  - serviceAccount:my-svc-account@nice-beanbag-288720.iam.gserviceaccount.com
+#  role: roles/viewer
 ```
 
 ## GKE and cloud registry

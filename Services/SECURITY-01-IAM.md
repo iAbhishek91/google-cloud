@@ -23,7 +23,7 @@ Googles Identity manager, which manages **who** can do **what** for **which** re
 
 - Service accounts belongs to application or VM.
 - They have unique email address created by GCP in specific nomenclature.
-- Service ac are associated with key-pairs used for authentication.
+- Service ac are associated with key-pairs used for authentication. User need to create the key, the private key is downloaded when the key creation is completed.
 - Service user are resources too and need to be managed. Roles can be applied to them.
 - In case a VMs need access to other VMs, we can create service accounts and give them appropriate permissions to manage the VMs.
 - Allows to authenticate between GCP services.

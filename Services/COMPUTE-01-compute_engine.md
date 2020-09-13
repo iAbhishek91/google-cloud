@@ -91,6 +91,14 @@ We need to create health check, else it will enable autoHealing based on VMs sta
 
 [auto healing instance in migs](https://cloud.google.com/compute/docs/instance-groups/autohealing-instances-in-migs)
 
+## Auto restart
+
+Its a simple feature, if VM stops due to  non-user initiated activity, the compute engine will start backup.
+
+Think if you need backup of the application.
+
+is your application idempotent or stateless, choose the option based on this factors.
+
 ## Sole tenant nodes
 
 - deploy your VM on a dedicated machine.
@@ -144,6 +152,15 @@ ssh -i ~/.ssh/id_rsa abhishek.das1@34.72.187.35
 ## Installing Stack Driver agent
 
 [Refer Stack driver docs.]((https://cloud.google.com/monitoring/agent/installation?_ga=2.259618700.-709608325.1596613385&_gac=1.83054052.1596613385.CjwKCAjwsan5BRAOEiwALzomX4P0FSrVgDyfLlilFkWE5WIykwC79JXGYy8bzTet51qSl_pgH6_K5xoCtrYQAvD_BwE#agent-install-debian-ubuntu))
+
+## host maintenance
+
+There are two option you have while server is going through maintenance: **first**: we can terminate the VM, **second**: we can move the VM to other server. (the second option is recommended by Google for un-interrupted service)
+
+## External IP
+
+- external IP are removed when VM are stopped or suspended.
+- external IP link will be disabled in cloud console when firewall is disabled for HTTP & HTTPS.
 
 ## Quotas and request for increase
 
