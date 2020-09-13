@@ -30,6 +30,7 @@
 - We can just mention the geographical location of the master*probably nearest possible location from the worker nodes*
 - One component is extra than vanilla kubernetes is - kube cloud manager *this brings in GCP features to GCP*
 - also you **not billed** for master infra.
+- **Auto upgrade** depends on "master version" cluster configuration. It can be *release channel* or *static version*. if its static, then cluster admin need to manually upgrade the cluster. however if its configured as *release channel* then GKE auto upgrade k8s version for us.
 
 ## API thats need to be enabled for GKE
 
@@ -60,12 +61,14 @@ You will be charged for the VMs, and cluster management fee.
 - node pool is **NOT a K8S feature** its something provided by GKE to better manage the worker nodes.
 - Node pool is group of nodes, that have same configuration.(they are like manged instance group in compute engine)
 - Node pool uses "NodeConfig" specification.
-- Node pool may contain one or many nodepool.
+- Node pool may contain one or many VMs.
 - Each node in the pool has a kubernetes node label **cloud.google.com/gke-nodepool: *node-pool-name**
 - When we create cluster the number and type of nodes that you specify becomes the default node pool. later we can add custom node pool of different sizes and types.
 - **use case** attaching different node pool helps you to manage the cluster  efficiently by scheduling application based on resources. This optimizes the resource utilization.
-- we can create upgrade and delete noe pools individually without affecting the cluster using "gcloud container node-pools"
-- By default al new node pools run the latest stable version of kubernetes, existing node pool can be manually upgraded or automatically upgraded.
+- we can create upgrade and delete node pools individually without affecting the cluster using "gcloud container node-pools"
+- By default all new node pools run the latest stable version of kubernetes, existing node pool can be manually upgraded or automatically upgraded.
+
+>NOTE: node pool are specific for GKE and if you dont have a cluster you cant create a node pool. As node pool needs a cluster name while creating.
 
 ### Choosing a minimum CPU platform
 

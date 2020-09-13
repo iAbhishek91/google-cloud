@@ -2,7 +2,7 @@
 
 ## Type of services
 
-Four main are **compute**, **Storage**, **Big data**, **Machine Learning**.
+Four main are **compute**, **Storage**, **Big data**, **Machine Learning**. These services ranges from IaaS(IT Ops, SysOps), PaaS(DevOps), Saas(LowOps, NoOps)
 
 - Administrative services: Resources and IAM.
 - Computing services: **compute engine** | **kubernetes engine** | **app engine** | **cloud function**.

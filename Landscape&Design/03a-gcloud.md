@@ -33,6 +33,14 @@ ref for all details: [gcloud docs](https://cloud.google.com/sdk/gcloud/reference
 --help provide detail help about the command
 -h one line summery of the command
 
+## Best practices
+
+Gcloud command often require zone, region and projectID.
+
+- keep this as environment variables
+  - save the variables in a .sh file
+  - include that as part of .profile file using source <file_name>.sh
+
 ## Properties
 
 Properties are like parameter which governs the behavior of the gcloud CLI and other SDK.

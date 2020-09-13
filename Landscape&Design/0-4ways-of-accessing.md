@@ -6,4 +6,4 @@
   a. Cloud client Libraries: (google recommended) community owned, and may not have latest features.
   b. Google API Client Libraries: they are open source, generated, Java, Python, JS, PHP, .NET, Go, Node.js RUby, Objective-C, Dart. They are designed for completeness.
 
-4. **Cloud console Mobile app**
+4. **Cloud console Mobile app** : it allow you perform imp tasks like manage VMs, database instance, manage ur billing, and visualize your google dashboard. Get alerts on monitoring and many many more.
