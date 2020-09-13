@@ -1,6 +1,6 @@
 # Google Kubernetes engine (Hybrid)
 
-- These is Google's managed kubernetes cluster.
+- These is Google's managed kubernetes cluster. (all the kubernetes components are managed including kubelets on worker node)
 - production ready with HA and comes with SLA.
 - GKE cluster can be customized
   - type of nodes (type of operating system and resource power)
@@ -22,6 +22,14 @@
   - Support of **vertical auto scaling** is still not a native feature of kubernetes as of 1.18. However we have horizontal pod autoscaling which is pretty straight-forward(based on resource utilization it can scale the number of pods). in case of vertical auto scaling based on the work loads, the pods are redeployed with scaled resource request and limits.
 
 > NOTE: Control plane are managed by Google, hence if we say we need 2 node cluster, both the node will be worker nodes. This is a reason its a managed K8s cluster.
+> NOTE: GCP uses containerD as container runtime
+
+## Master
+
+- Kubernetes master are managed by GKE. *Both the infra(VMs) on which it is deployed and the master components like - kube-scheduler, api-server, control-manager, etcd, and kubelet*
+- We can just mention the geographical location of the master*probably nearest possible location from the worker nodes*
+- One component is extra than vanilla kubernetes is - kube cloud manager *this brings in GCP features to GCP*
+- also you **not billed** for master infra.
 
 ## API thats need to be enabled for GKE
 
@@ -49,6 +57,7 @@ You will be charged for the VMs, and cluster management fee.
 
 ## node pool
 
+- node pool is **NOT a K8S feature** its something provided by GKE to better manage the worker nodes.
 - Node pool is group of nodes, that have same configuration.(they are like manged instance group in compute engine)
 - Node pool uses "NodeConfig" specification.
 - Node pool may contain one or many nodepool.
@@ -72,15 +81,15 @@ While creating a cluster or a node pool, we choose a baseline minimum CPU platfo
 
 By default clusters are created on a single zone. There are two problems: first if the zone goes down and second during upgrade there may be some glitches like API server goes down.
 
-With multi-zone or regional cluster, the nodes are distributed on 3 different zones on same region. It give benefits of HA of the cluster as both nodes are master (as master are also deployed on all the three zones).
+With multi-zone or regional cluster, by default the nodes are distributed on 3 different zones on same region. It give benefits of HA of the cluster as both nodes are master (as master are also deployed on all the three zones).
 
 During upgrade we do upgrade of one at time, so that we always have the option of fall-back. Hence there is not chance of loosing access to k8s API server.
 
 The replication happens with persistent disks as well, when we have regional the disk are also replicated with streaming replicas on. Hence if one zone goes down, we don't loose on data.
 
-Very important: in multi-zonal or regional cluster the node-pools are replicated to those zones automatically for redundancy.
+Very important: in multi-zonal or regional cluster the node-pools are replicated to those zones automatically for redundancy. Deletion of node also deletes the nodes automatically. hence we can conclude by saying that in regional cluster each zone have same number of worker nodes. This feature impact on the cost.
 
-Deletion of node also deletes the nodes automatically.
+> NOTE: A cluster created as zonal cluster cant be modified into regional cluster or vice versa.
 
 ## Connect to the cluster
 
@@ -94,13 +103,13 @@ gcloud container clusters get-credentials gke-k8s-cluster --zone europe-west2-c 
 
 This is a new feature of GKE - Anthos. Which allow you to connect the cluster available on premise or on other cloud.
 
-## Networking and security in GKE
+## Networking
 
 Nodes contains the pods. Nodes have their IP address on VPC(read GCP IP address), however the virtual IP on each pod are only routed or accessible with in the cluster.
 
 Generally(natively) the traffic flow is something like this: User makes a request to the load balancers, the load balancer forwards the traffic to VM by masking the IP using NAT, then the IPtable on the VMs forwards the packets to the correct pods, where the pod may or may not exist on the same node in which the load balancer have forwarded traffic to. This creates lots of latency and network problems. Defined as **double hop problem**.
 
-GCP provides a feature called **VPC Native POD IP address(IP aliasing)** where actual IP address is assigned to POd as well same as nodes. In this case load balancer can directly forward traffic to the pod directly instead of sending it to node first. This is basically **container native load balancing**.
+GCP provides a feature called **VPC Native POD IP address(IP aliasing)** where actual IP address is assigned to POds and services as well same as nodes. In this case load balancer can directly forward traffic to the pod directly instead of sending it to node first. This is basically **container native load balancing**.
 
 **Internal load balancing** is to expose the apps with in the cluster to other services within GCP. Internal load balancing are not accessible externally.
 
@@ -108,9 +117,22 @@ GCP provides a feature called **VPC Native POD IP address(IP aliasing)** where a
 
 **Multi cluster ingress** which can route traffic to multiple cluster. We can choose the closest cluster for low latency and forward the traffic to that particular cluster.
 
+**kubernetes services**:
+
+- same as vanilla kubernetes services.
+- it has stable endpoints to connect the multiple ephemeral Pod hosting same service.
+- *ClusterIP* its host the service accessible only within the cluster. (same as vanilla k8s)
+- *NodePort* expose the service on a specific port on all the cluster nodes. (same as vanilla k8s)
+- *LoadBalancer* exposes service externally via load balancer. Load balancer give you access to regional network. The service can be accessed via network loadbalancer's IP.
+
 ## Security
 
-**private cluster** are clusters are k8s cluster which do not have external IPs and its not open to users.
+**private cluster**:
+
+- its not open to all users. They are hidden from the public internet.
+- they are accessed by GCP services like stack driver using internal IP.
+- authorized network (IP ranges that are allowed to access the master)can have access to the cluster using external IP.
+- both zonal an regional cluster can be created as private cluster.
 
 **master authorized network** only certain people authorized can login, not a random person on the internet can access it.
 
