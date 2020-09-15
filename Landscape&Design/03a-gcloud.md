@@ -116,7 +116,7 @@ gcloud auth list
 gcloud config set account [username]
 ```
 
-## VM
+## VM / Network
 
 ```sh
 # create a new VM in default zone
@@ -134,6 +134,14 @@ gcloud compute ssh instance-1 --zone asia-south1-a
 
 # Copy files from cloud shell VM to another VM
 gcloud compute scp index.html first-vm:index.nginx-debian.html --zone=us-central1-c
+
+# list all the network and subnet
+gcloud compute networks list
+gcloud compute networks subnets list
+
+# delete a network
+gcloud compute networks subnets delete london --region=europe-west2
+gcloud compute networks delete abhishek
 ```
 
 ## cloud SQL
