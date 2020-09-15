@@ -8,6 +8,8 @@ Virtual Private cloud - allow you to define a virtual private network on GCP. Or
 
 > Note: VPC is software defined network, no hardware are used to create these networks.
 
+Here we discuss about network, subnet, IP address, DNS (refer DNS.md), routes and firewall rules.
+
 ## Features
 
 - control ingress and egress traffic.
@@ -116,6 +118,8 @@ Here we take a example to elaborate things:
 
 Refer: image VPC creation with subnet with custom network type for a region.
 
+> NOTE: if you delete the default network,, compute engine, GKE and APP engine dont work.
+
 **Now we create VPC**:
 
 - Create a instance template with custom network, the create instance group with 4 instance: Success
@@ -126,3 +130,104 @@ Refer: image VPC creation with subnet with custom network type for a region.
 Refer: the image VM-creation-pre-subnet-expansion and VM-creation-post-subnet-expansion
 
 > Note: VPC cant be delete if they are referred by some resources like instance template or group etc.
+
+## Routes and firewall rules
+
+### Routing tables
+
+This section explain how GCP route traffic between different components.
+
+By default every network has a route in  a network send traffic directly to each other between subnets.
+Also a default route that directs packets to destinations that are outside the network.
+
+Apart from the above routes we can create special custom routes, which may override the existing routes.
+
+Defining routes do not guarantee that packet will be received by next hop. Firewall rules should also allow the traffic.
+
+Default network have a pre-configured firewall rule which allows every component to communicate to each other.
+
+Manually created network do not have any firewall rules and hence we should be defining them.
+
+**Route match a packets by destination IP address**, however firewall rules are should also match for successful communication.
+
+### Firewall rules
+
+Firewall rules protect your VM instances from an unapproved connections both inbound an outbound.
+
+VPC network function as a distributed firewall, hence firewall rules are applied to the network as a whole and not specific to instances.
+
+But the rules are applied to allow or deny traffic at instance level.
+
+Firewall rules are defined not only on the instance to communicate with external or other GCP networks, but also between instance on same network.
+
+Firewall rules are stateful, this means that if communication between source and destination are allowed then all subsequent communication will be allowed. They are bidirectional once a session is established.
+
+If all firewall rules are deleted, then by default *deny all ingress* and *allow all egress* is applied.
+
+## How are route defined
+
+Route contains the network IP(or CIDR) as well the network name. So when a request comes instance, it forwards the packet to desired network by consulting the routing tables.
+
+## Creation of route
+
+If there is no Network, no routes can exists. *In case you delete the default network.*
+
+Route is created when a network is created. Also when a subnet is created. This enables VMs to communicate on the same network.
+
+Routes in route collection can be configured to one or multiple instances.
+
+Route applies to instance if network and instance tag is matched.
+
+If the network tag matches and there are no instance tag, the the route is applied to all the instance in the network.
+
+Then compute engine then creates individual read only routing tables for each of the instances.
+
+## Creation of firewall rules
+
+If there is no Network, no firewall rules can exists. *In case you delete the default network.*
+
+Firewall rules consist of following parameters:
+
+- **Direction** : ingress or egress (the rules are validated based on the flow of the traffic, for example: for egress traffic ingress rules are not validated.)
+- **Source or destination** : source are configured in inbound rules to identify the host. Can be IP address, source tag or a svc account. Similarly, destination can be specified as part of the rule with one or more ranges of IP address.
+- **Protocol or port** : rules can be restricted to apply to specific protocol only or combination of protocols and ports.
+- **Action** : allow or deny
+- **priority** : order in which rules are evaluated. First matching rules is applied
+- **Rule assignment** : All rules are assigned to all instance in the network, but they are no applied.
+
+**Examples**: stop undesired connection to external VM or network from your instances. and to prevent unauthorized connection to be received by the instance.
+
+## Pricing
+
+- Price are involved for each type of traffic type:
+  - **ingress**: no charge for traffic. Resources receiving the traffic will be charged like VMs or LBs.
+  - **Egress to same zone(internal IP)**: No charge
+  - **Egress to google product**: No charge - you tube, Maps, drive
+  - **Egress to different GCP services(same region)**: No charge
+  - **Egress b/w zones in the same region**: $0.01 /GB
+  - **Egress b/w same zone using external IP**: $0.01/GB
+  - **Egress b/w region within US and Canada**: $0.01/GB
+  - **Egress b/w regions not including traffic b/w US regions**: Varies
+- Price for External IP address:
+  - **Static IP address(not in use)**: $0.010/hour
+  - **Static & ephemeral IPin standard VM**: $0.004/hour
+  - **Static & ephemeral IP in preemptible VM**: $0.004/hour
+  - **Static or ephemeral attached to forwarding rules**: No charges
+
+> NOTE: the above are subject to change please use price calculator. For example: you can choose n1-standard-1 us-central1 with 100GB egress/monthly b/w US and EMEA.
+
+## Network design pattern
+
+### Increase availability on same region
+
+With multiple zone **us-west-1a**, **us-west-1b** on same region with a single subnet. This may save from additional security complexity.
+
+### Globalization
+
+Need to create multiple subnet on different zones of different regions. Less failure across different failure domains. We can  use global HTTP load balancer to route traffic to the healthy region that are closer to the region. This also help lower latency and lower network cost for the project.
+
+## Security
+
+Whenever possible we can remove external IP address, and use cloud NAT.  cloud NAT allow your application to communicate with internet or global network in controlled and efficient manner. This can be configure for update, patching and other required services of the cloud instances. Cloud NAT will alow internal traffic to the internet and not outbound.
+
+VPC routing using cloud internet gateway manages access to the Google APIs and other third party services on the internet. For example if we want to implement cloud store service in any on the VM we need to allow them per subnets. With internet gateway we can still access Google Private Access without external IP address. **NEED TO GO THROUGH ONCE AGAIN**
