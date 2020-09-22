@@ -174,6 +174,10 @@ However premium is default.
 
 [Ref](https://cloud.google.com/network-tiers/docs/overview)
 
+## one benefit of applying firewall rules by tag rather than by address
+
+When a VM is created with a matching tag, the firewall rules apply irrespective of the IP address it is assigned.
+
 ## How to create multiple compute engine with same config
 
 1. Create an instance template

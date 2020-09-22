@@ -226,8 +226,32 @@ With multiple zone **us-west-1a**, **us-west-1b** on same region with a single s
 
 Need to create multiple subnet on different zones of different regions. Less failure across different failure domains. We can  use global HTTP load balancer to route traffic to the healthy region that are closer to the region. This also help lower latency and lower network cost for the project.
 
-## Security
+### Security
 
-Whenever possible we can remove external IP address, and use cloud NAT.  cloud NAT allow your application to communicate with internet or global network in controlled and efficient manner. This can be configure for update, patching and other required services of the cloud instances. Cloud NAT will alow internal traffic to the internet and not outbound.
+Whenever possible we can remove external IP address, and use cloud NAT.  **Cloud NAT** allow your application to communicate with internet or global network in controlled and efficient manner. This can be configure for update, patching and other required services of the cloud instances. Cloud NAT will allow internal traffic to reach out to internet but not from internet. In other words Cloud NAT provide internet access to VPC's private instances.
 
-VPC routing using cloud internet gateway manages access to the Google APIs and other third party services on the internet. For example if we want to implement cloud store service in any on the VM we need to allow them per subnets. With internet gateway we can still access Google Private Access without external IP address. **NEED TO GO THROUGH ONCE AGAIN**
+VPC routing using cloud internet gateway manages access to the Google APIs and other third party services on the internet. For example if we want to implement cloud store service in any on the VM we need to allow them per subnets. With **Google Private Access** enabled we can accesses internet without external IP address. Private Google Access is enabled at the subnet level. When it is enabled, instances in the subnet that only have private IP addresses can send traffic to Google APIs and services through the default route (0.0.0.0/0) with a next hop to the default internet gateway.
+
+> NOTE: When instances do not have external IP addresses, they can only be reached by other instances on the network via a managed VPN gateway or via a Cloud IAP tunnel. Cloud IAP enables context-aware access to VMs via SSH and RDP without bastion hosts. For more information about this, see this blog post.
+
+## Cloud NAT
+
+Cloud NAT is a regional resource(if you have VM instances in multiple regions, you’ll need to create a NAT gateway for each region) and VPC network specific(if there are multiple VPC for a network you need create multiple cloud NAT for each VPC). *Hence, when we create cloud NAT, we provide the VPC(network) and the region*.
+
+You can configure it to allow traffic from all ranges of all subnets in a region, from specific subnets in the region only, or from specific primary and secondary CIDR ranges only.
+
+### Cloud NAT logging
+
+Cloud NAT logging allows you to log NAT connections and errors. When Cloud NAT logging is enabled, one log entry can be generated for each of the following scenarios:
+
+When a network connection using NAT is created.
+When a packet is dropped because no port was available for NAT.
+You can opt to log both kinds of events, or just one or the other. Created logs are sent to Cloud Logging.
+
+## Cloud Router
+
+Google Cloud Router dynamically exchanges routes between your Virtual Private Cloud (VPC) and on-premises networks by using Border Gateway Protocol (BGP)
+
+## IAP
+
+gcloud compute ssh vm-internal --zone us-central1-c --tunnel-through-iap
