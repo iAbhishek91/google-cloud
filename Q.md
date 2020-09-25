@@ -37,6 +37,32 @@ Based on the processing powers are required only when we require huge computing 
 
 However using small VMs are better when we use have option to split the processing power.
 
+## What are extended memory
+
+## What are default processor based on zone
+
+sanibridge processor for us-central-1? study more about these processor.
+
+## Mention few scenario where you need to stop your VM
+
+- upgrade or add more CPU or memory
+- remove or set a new static IP
+- modify instance tag.
+
+## Mention few properties that can be changed when a VM is running
+
+- labels
+- Internal & External IP type
+- Allow or disallow HTTP /HTTPS
+- Boot disk - What to do after the VM terminates
+- Availability policies
+
+## Mention few permanent properties of VM which cant never be changed
+
+- name
+- Region and Zone
+- Image
+
 ## There are multiple storage options for a VM (mentioned in Persistent-disk.md), which option to choose when
 
 In most of the scenario the common option recommended by google is to add a persistent disk to your VM.
@@ -119,6 +145,22 @@ There are two type of maintenance type:
 - **host maintenance**: kernel and hardware upgrade. Once every two week. Live migration is required.
 
 - **lightweight**: hypervisor or network stack upgrade. 1-2 times per week. Live migration is not required.
+
+## What factor determine auto-upgrade in GCP
+
+If any of the "Release channel" is selected as master version.
+
+## How do you avoid GKE version auto upgrade disruption
+
+- create a pre-prod cluster and choose **rapid** as the channel.
+- This will give you 2-3 months of time to test the new feature if its release to **regular** channel.
+- If 2-3 months are not sufficient, choose **maintenance exclusion**.
+
+## Characteristics of maintenance exclusion
+
+- select three
+- cant be recurrence
+- can be configured for new or existing cluster.
 
 ## Compare all the storage options provided by GCP
 

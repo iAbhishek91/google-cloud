@@ -28,9 +28,17 @@
 
 - Kubernetes master are managed by GKE. *Both the infra(VMs) on which it is deployed and the master components like - kube-scheduler, api-server, control-manager, etcd, and kubelet*
 - We can just mention the geographical location of the master*probably nearest possible location from the worker nodes*
-- One component is extra than vanilla kubernetes is - kube cloud manager *this brings in GCP features to GCP*
-- also you **not billed** for master infra.
+- One component is extra than vanilla kubernetes is - kube cloud manager *this brings in GCP features to GKE k8s cluster*
+- also you are **not billed** for master infra.
 - **Auto upgrade** depends on "master version" cluster configuration. It can be *release channel* or *static version*. if its static, then cluster admin need to manually upgrade the cluster. however if its configured as *release channel* then GKE auto upgrade k8s version for us.
+  - There are three version of auto upgrade: *each channel are trade off b/w availability and update churn*
+    - *rapid*: get latest version of k8s asap. Cluster is frequently upgraded.
+    - *regular*(default): 2-3 months after releasing in rapid. It provides perfect balance between feature availability and release stability ans is recommended by Google.
+    - *Stable*: 2-3 after release in regular. is the last one hence features are available at last, but cluster are less frequently upgraded.
+  - Critical security patches are released to all channels immediately.
+  - Each channel has a default version. Google recommends to test the version before auto-upgrade. *Prevent yourself from version upgrade disruption*.
+    - how to test the release version before its auto upgrade: in Q&A.
+- User have option to choose the Kubernetes version of master.
 
 ## API thats need to be enabled for GKE
 

@@ -12,9 +12,27 @@ from Console or GCloud command line tool.
 - **Local SSD** are not permanent, as they are deleted when VMs terminate.
 - select the **boot image** of the OS - windows and linux, also import images from other places.
 - we can also pass a **startup scripts**, to be executed when a VM boots to configure their VMs.
+- there are also **shutdown script**, there are specific time limit. *Lesser for preemptive VMs ~ 30sec*
 - Take **snapshots of the VMs** when we need to migrate to another region.
 - Auto scaling.
 - **host maintenance** regular maintenance activity will migrate your VMs to other physical server without downtime.
+
+## Machine type
+
+Pre-defined machine type: Ratio of GB of memory per vCPU.
+
+- Standard: n1-standard-1 to n1-standard-96 | mem: 3.75/vCPU | max # 128 | Max PD 64 TB | used for task that require balance of CPU and memory |
+- High-memory: n1-highmem-2 to n1-highmem-96 | mem: 6.5/vCPU | max # 128 | Max PD 64 TB | more use of memory task compared to CPU |
+- High-CPU: n1-highcpu-2 to n1-highcpu-96 | mem: 0.9/vCPU | max # 128 | Max PD 64 TB | more use of vCPU task compared to memory |
+- Memory-Optimized: n1-ultramem-40 to n1-ultramem-160, n1-megamem-96 | mem: >14GB/vCPU | max # 128 | Max PD 64 TB | memory intensive job - in memory databases, like SAP Hana, In memory analytics etc|
+- Compute-Optimized: c2-standard-4 to c2-standard-60 | max # 128 | Max PD 64 TB | compute intensive job - highest power vCPU and runs on newer platform |
+- Shared core: f1-micro & g1-small | 0.2 vCPU to 0.5 vCPU respectively | max # 16 | Max PD 3 TB | good for small workload and cost effective . |
+
+We also have custom type where you can choose vCPU and Memory.
+
+## Bursting capabilities
+
+**f1-micro** machine types provide bursting capabilities where it increases the physical vCPU than its allocated for a short period of time. Bursting of vCPU is temporary and is automatically done by compute engine when required.
 
 ## Instance template
 
@@ -31,13 +49,14 @@ Dedicated VMs, it will not be terminated if its required else where.
 ## what are preemptible VMs
 
 - These VMs can be taken away anytime if they are required anywhere else.
-- its a good way to save money, as they are cheaper.
+- its a good way to save money, as they are cheaper. *80% cheaper*.
 - **use cases**: VMs which mainly use to run long jobs with no human interactions. Make sure to start and stop the job in case of failure. Basically jobs running of preemptible VMs are to be fault tolerant.
 - It last only 24 hours, or sooner.
 - Automatic restart is not possible on preemptible VMs.
 - Preemptible instance cant live migrate to regular VMs.
 - your application has 30 seconds to exit gracefully.
 - Using preemptible Vms with instance group will bring back the VM automatically when its preempt.
+- You can't convert a non-preemptible instance into a preemptible one. This choice must be made at VM creation.
 
 ## Instance Group
 
@@ -91,14 +110,6 @@ We need to create health check, else it will enable autoHealing based on VMs sta
 
 [auto healing instance in migs](https://cloud.google.com/compute/docs/instance-groups/autohealing-instances-in-migs)
 
-## Auto restart
-
-Its a simple feature, if VM stops due to  non-user initiated activity, the compute engine will start backup.
-
-Think if you need backup of the application.
-
-is your application idempotent or stateless, choose the option based on this factors.
-
 ## Sole tenant nodes
 
 - deploy your VM on a dedicated machine.
@@ -116,10 +127,21 @@ is your application idempotent or stateless, choose the option based on this fac
 ## Charge
 
 - Charged in seconds for minimum of 1 minutes.
-- **Sustained use discount** offered if VMs are running for a significant portion of the billing month.
-- **Committed use discount** offered if procurement is based on 1 year or 3 year contract.
+  - resource base pricing model: where charges are based on the resources consumed.
+- **Sustained use discount** offered if VMs are running for a significant portion of the billing month. Cycle starts at beginning of each month, *hence if we spin a VM mid of a month and run for a one month the usage will be around 50% as 50% of both month is wasted. As the price is based on same region, if there are common resource the sustained use discount is applied on common resources.*
 
-## SSH
+  - 0 - 25% use: 100% charge
+  - 25 - 50% use: 90% charge
+  - 75% use: 85% charge
+  - 100% use: 70% charge
+
+> NOTE: Sustain discount are provided to a region instead to instance.
+
+- **Committed use discount** offered if procurement is based on 1 year or 3 year contract. *57% of discount for most of the machine types, 70% for memory optimized*.
+
+## SSH and RDP
+
+Creator of the VM has full root privileges to the VM instances.
 
 There are two way we can manage SSH key for a VM if we want. Else GCP manages few keys already.
 
@@ -132,6 +154,10 @@ ssh -i ~/.ssh/id_rsa abhishek.das1@34.72.187.35
 - **specific for all VM** In compute engine we can manage under metadata
 
 > NOTE: Alternatively we can have OS login, where we don't need to manage SSH keys.
+
+**RDP** is for remote desktop protocol which require for Windows VM username and password to login. Remote desktop client is required to connect to such VMs.
+
+Protocol used is 3389
 
 ## Lifecycle of a VM
 
@@ -153,9 +179,21 @@ ssh -i ~/.ssh/id_rsa abhishek.das1@34.72.187.35
 
 [Refer Stack driver docs.]((https://cloud.google.com/monitoring/agent/installation?_ga=2.259618700.-709608325.1596613385&_gac=1.83054052.1596613385.CjwKCAjwsan5BRAOEiwALzomX4P0FSrVgDyfLlilFkWE5WIykwC79JXGYy8bzTet51qSl_pgH6_K5xoCtrYQAvD_BwE#agent-install-debian-ubuntu))
 
-## host maintenance
+## Availability policy
 
-There are two option you have while server is going through maintenance: **first**: we can terminate the VM, **second**: we can move the VM to other server. (the second option is recommended by Google for un-interrupted service)
+### Auto restart
+
+Its a simple feature, if VM stops due to  non-user initiated activity, the compute engine will start backup.
+
+Think if you need backup of the application.
+
+is your application idempotent or stateless, choose the option based on this factors.
+
+### host maintenance
+
+There are two option you have while server is going through maintenance: **first**: we can terminate the VM, **second**: we can move the VM to other server. (the second option is recommended by Google for un-interrupted service). This option is known as Live migration.
+
+Live Migration migrates a VM to a different VM without interruption. Metadata indicates occurrence of live migration. Live migration happens within same region but can be on a different Zone.
 
 ## External IP
 

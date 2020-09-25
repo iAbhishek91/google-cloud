@@ -12,6 +12,8 @@ Also includes multi region failover.
 
 They are very responsive to health of the application, failover etc.
 
+LB do not require pre-warming as they are not hardware load balancer.
+
 ## Type of load balancing
 
 - Global Load balancing: Layer 7(application layer) load balancing. (HTTP(s))
