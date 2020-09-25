@@ -146,18 +146,28 @@ There are two type of maintenance type:
 
 - **lightweight**: hypervisor or network stack upgrade. 1-2 times per week. Live migration is not required.
 
-## What factor determine auto-upgrade in GCP
+## What factor determine auto-upgrade in GKE
 
 If any of the "Release channel" is selected as master version.
 
+## When to choose which release channel in GKE
+
+- rapid: for non-prod cluster, experiment of new features etc.
+- regular: for prod cluster, gives a balance option between stability and new feature
+- stable: for prod cluster, where maturity is more important than new features.
+
 ## How do you avoid GKE version auto upgrade disruption
 
-- create a pre-prod cluster and choose **rapid** as the channel.
-- This will give you 2-3 months of time to test the new feature if its release to **regular** channel.
-- If 2-3 months are not sufficient, choose **maintenance exclusion**.
+- option-1
+  - create a pre-prod cluster and choose **rapid** as the channel.
+  - This will give you 2-3 months of time to test the new feature if its release to **regular** channel.
+  - If 2-3 months are not sufficient, choose **maintenance exclusion**.
+- option-2
+  - manually upgraded to new version. (more control of time of upgrade, and better predictability)
 
 ## Characteristics of maintenance exclusion
 
+- mainly used to postpone auto-upgrade of K8s version.
 - select three
 - cant be recurrence
 - can be configured for new or existing cluster.

@@ -26,19 +26,12 @@
 
 ## Master
 
-- Kubernetes master are managed by GKE. *Both the infra(VMs) on which it is deployed and the master components like - kube-scheduler, api-server, control-manager, etcd, and kubelet*
+- Kubernetes master are managed by GKE. The k8s master VM are launched under Googles' own  project. *Both the infra(VMs) and the master components like - kube-scheduler, api-server, control-manager, etcd, and kubelet*
+- The master k8s VM run on googles project's VPC. The nodes are using user's VPC, hence the cluster works with external IP of the VMs. **However in case of private cluster VPC peerings is used to create the cluster**. Refer exercise: VPC with GKE.
 - We can just mention the geographical location of the master*probably nearest possible location from the worker nodes*
 - One component is extra than vanilla kubernetes is - kube cloud manager *this brings in GCP features to GKE k8s cluster*
 - also you are **not billed** for master infra.
 - **Auto upgrade** depends on "master version" cluster configuration. It can be *release channel* or *static version*. if its static, then cluster admin need to manually upgrade the cluster. however if its configured as *release channel* then GKE auto upgrade k8s version for us.
-  - There are three version of auto upgrade: *each channel are trade off b/w availability and update churn*
-    - *rapid*: get latest version of k8s asap. Cluster is frequently upgraded.
-    - *regular*(default): 2-3 months after releasing in rapid. It provides perfect balance between feature availability and release stability ans is recommended by Google.
-    - *Stable*: 2-3 after release in regular. is the last one hence features are available at last, but cluster are less frequently upgraded.
-  - Critical security patches are released to all channels immediately.
-  - Each channel has a default version. Google recommends to test the version before auto-upgrade. *Prevent yourself from version upgrade disruption*.
-    - how to test the release version before its auto upgrade: in Q&A.
-- User have option to choose the Kubernetes version of master.
 
 ## API thats need to be enabled for GKE
 
@@ -88,19 +81,129 @@ While creating a cluster or a node pool, we choose a baseline minimum CPU platfo
 
 > Check CPU platform is available: gcloud compute zones describe compute-zone
 
-## Multi-zonal or regional cluster
+## Type of cluster based on availability
 
-By default clusters are created on a single zone. There are two problems: first if the zone goes down and second during upgrade there may be some glitches like API server goes down.
+### Zonal cluster
 
-With multi-zone or regional cluster, by default the nodes are distributed on 3 different zones on same region. It give benefits of HA of the cluster as both nodes are master (as master are also deployed on all the three zones).
+- single control-plane, in a single zone *managed by GKE(with SLA), so don't worry about the HA of control plane*
+- there are two type of zonal cluster
+  - single zone ( control-plane and nodes are on the same zone)
+  - Multi Zone ( single control plane, with nodes distributed on multiple zones)
 
-During upgrade we do upgrade of one at time, so that we always have the option of fall-back. Hence there is not chance of loosing access to k8s API server.
+> NOTE: If your requirement is to maintain the capacity of the cluster(node pools), regional cluster is perfect. Since capacity are disrupted when there is a zonal failure.
 
-The replication happens with persistent disks as well, when we have regional the disk are also replicated with streaming replicas on. Hence if one zone goes down, we don't loose on data.
+### Regional cluster
+
+There are two problems: first if the zone goes down and second during upgrade there may be some glitches like API server goes down.
+
+With regional cluster, by default the entire cluster(master, node, pd) are replicated on 3 different zones on same region (this number can obviously changed). It give benefits of HA of the cluster as both nodes are master (as master are also deployed on all the three zones).
+
+During upgrade we do upgrade of one cluster at time, so that we always have the option of fall-back. Hence there is not chance of loosing access to k8s API server.
+
+The replication happens with persistent disks as well. For regional cluster, the disk are also replicated with streaming replicas on. Hence if one zone goes down, we don't loose on data.
 
 Very important: in multi-zonal or regional cluster the node-pools are replicated to those zones automatically for redundancy. Deletion of node also deletes the nodes automatically. hence we can conclude by saying that in regional cluster each zone have same number of worker nodes. This feature impact on the cost.
 
 > NOTE: A cluster created as zonal cluster cant be modified into regional cluster or vice versa.
+> By Default region consist of 9 nodes, (3 node * 3 zone), and by default there are only 8 IP/region. So first we need to increase if you go with all default settings.
+
+## Type of cluster based on version
+
+### release channel (recommended by Google)
+
+- **Auto upgrade** depends on "master version" cluster configuration. It can be *release channel* or *static version*. if its static, then cluster admin need to manually upgrade the cluster. however if its configured as *release channel* then GKE auto upgrade k8s version for us.
+  - There are three version of auto upgrade: *each channel are trade off b/w availability and update churn*
+    - *rapid*: get latest version of k8s asap. Cluster is frequently upgraded.
+    - *regular*(default): 2-3 months after releasing in rapid. It provides perfect balance between feature availability and release stability ans is recommended by Google.
+    - *Stable*: 2-3 after release in regular. is the last one hence features are available at last, but cluster are less frequently upgraded.
+  - Critical security patches are released to all channels immediately.
+  - Each channel has a default version which will be selected automatically. Google recommends to test the version before auto-upgrade. *Prevent yourself from version upgrade disruption*.
+    - how to test the release version before its auto upgrade: in Q&A.
+  - update channels of existing cluster:
+    - upgrade: to one version is allowed. *stable to regular is allowed, however stable to rapid is not allowed.*
+    - downgrade: not allowed, as it may result in downgrading k8s versions. *rapid to regular, regular to stable*
+  - Nodes are automatically upgraded recommended version based on the channel.
+
+### default
+
+Uses the default version of GKE and changes overtime. At the time of creation it selects the default version and admin needs to upgrade to next version when available.
+
+### Static version
+
+you manage the version and upgrade.
+
+### alpha cluster
+
+-- DO NOT USE FOR PRODUCTION --
+
+Alpha cluster are for experimenting with alpha features of kubernetes. They are normal GKE cluster with some restriction. It runs the current default version of k8s, alternatively we can choose the different version.
+
+> NOTE: if doesn't matter which version of k8s you are running on alpha cluster, the Alpha API are enabled.
+
+**Common scenario**: for advance users to experiment on k8s features. these cluster are short lived.
+
+**Limitation of alpha cluster**:
+
+- cant be upgraded
+- do not receive security patches.
+- short lived, auto deleted after 30 days.
+- Do not follow GKE SLA *for example up time of 99%*
+- auto upgrade and auto repair will be disabled, hence we cant choose release channel.
+
+**Alpha GKE version** This are new version of k8s built on top of open source k8s to support GKE features to its optimal. Its not necessary to that alpha cluster runs alpha GKE version.
+
+## Type of cluster based on n/w communication between pods
+
+Default cluster mode depends on how the cluster is created. But the below can be changed.
+
+- from console: VPC-native cluster
+- from REST API: Route based cluster
+- from gcloud:
+  - v256.0.0 and higher or v250.0.0 and lower: Route based
+  - else: VPC native cluster
+
+Updating of network type or IP address is NOT possible, once cluster is created.
+
+### VPC-native cluster
+
+- It uses alias IPs.
+- VPC network is required. *legacy network cant be used*
+
+For VPC native cluster: a subnet is required from the VPC network. There are three different subnet or IP ranges are used from the given subnet.
+
+- Node IP: primary IP address range from the subnet.
+- Pods IP: are taken from secondary IP address ranges of the subnet. GKE allocates /24 CIDR (256 IP address) for pods IP per node. 110 pods/node are supported from the 256 IP addresses. Extra IPs are used to mitigate IP address reuse as pods are added or deleted from the node.
+-Service IP(also known as ClusterIP): cluster IP addresses are taken from the another secondary IP address ranges of the subnet.
+
+> NOTE: IP ranges for node, pod and network should NOT overlap. Also the range of IP should fall under RFC-1918.
+
+Creating secondary IP address to VPC subnet. There are two ways
+
+- Managed by GKE(by default): GKE will create and manage the IP ranges for you. User just need to provide the CIDR *for eg: 10.1.0.0/16 pod or 10.2.0.0/20 for service* or we can also mention the subnet mask only *for eg: /16 and /20 for pod and service respectively*
+- User managed: Create the secondary ranges in the subnet and then create the cluster.
+
+> Also if we don't provide the secondary address for the pod, it will automatically calculate based on the **maximum pod per node** under network section.
+
+There are certain restriction if VPC-native cluster is created on top of shared VPC.
+
+### Route based cluster
+
+- Cluster that uses Google cloud routes are known as route based cluster. Need to read.
+
+## Type of cluster based on n/w isolation
+
+### Private Cluster
+
+Private cluster allow you to isolate nodes *only nodes not GKE cluster as whole* from having inbound and outbound connectivity to public internet.
+Nodes do not have external IP assigned. In case outbound connectivity is required we need to connect use cloud NAT or manage NAT gateway ourself.
+
+Even though the node IP addresses are private, external clients can reach Services in your cluster. For example, you can create a Service of type LoadBalancer, and external clients can call the IP address of the load balancer. Or you can create a Service of type NodePort and then create an Ingress. GKE uses information in the Service and the Ingress to configure an HTTP(S) load balancer. External clients can then call the external IP address of the HTTP(S) load balancer.
+
+**Private google cloud** is enabled by default. Hence private nodes and workload have limited access to internet. It can access goolge APIs and other services over Googles private network.
+
+### Public Cluster
+
+By default, it exposes its application to internet.
 
 ## Connect to the cluster
 
