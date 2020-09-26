@@ -180,7 +180,7 @@ For VPC native cluster: a subnet is required from the VPC network. There are thr
 Creating secondary IP address to VPC subnet. There are two ways
 
 - Managed by GKE(by default): GKE will create and manage the IP ranges for you. User just need to provide the CIDR *for eg: 10.1.0.0/16 pod or 10.2.0.0/20 for service* or we can also mention the subnet mask only *for eg: /16 and /20 for pod and service respectively*
-- User managed: Create the secondary ranges in the subnet and then create the cluster.
+- User managed: Create the secondary ranges in the subnet and then create the cluster. Refer: example/08-vpc-with-gke
 
 > Also if we don't provide the secondary address for the pod, it will automatically calculate based on the **maximum pod per node** under network section.
 
@@ -199,7 +199,13 @@ Nodes do not have external IP assigned. In case outbound connectivity is require
 
 Even though the node IP addresses are private, external clients can reach Services in your cluster. For example, you can create a Service of type LoadBalancer, and external clients can call the IP address of the load balancer. Or you can create a Service of type NodePort and then create an Ingress. GKE uses information in the Service and the Ingress to configure an HTTP(S) load balancer. External clients can then call the external IP address of the HTTP(S) load balancer.
 
-**Private google cloud** is enabled by default. Hence private nodes and workload have limited access to internet. It can access goolge APIs and other services over Googles private network.
+VPC-native traffic routing is required for private network.
+
+Access to master is disabled by default. There is a external IP address assigned to master node, however its only for googles internal use for cluster management.
+
+Master IP range is required to configure the IP range. Make sure this **IP falls under RFC 1918** and **do NOT overlap with any subnet IP ranges** as this will VPC peering. Only CIDR /28 range is allowed. *class-c(172.16.0.0) range is suggested by google*
+
+**Private google cloud** is enabled by default. Hence private nodes and workload have limited access to internet. It can access google APIs and other services over Googles private network.
 
 ### Public Cluster
 

@@ -71,8 +71,8 @@ VPC have a global scope. and subnets are regional and spans several zones.
   - **Zones**
   - **IP addresses**
   - **VMs**
-  - **Routes**
-  - **Firewall rules**
+  - **Routes** explained below
+  - **Firewall rules** explained below
 
 ## Internal and External IP
 
@@ -85,7 +85,7 @@ VPC have a global scope. and subnets are regional and spans several zones.
   - Choose static
 
 - External IP address are assigned from a pool (ephemeral) or from a reserved static IP address. *Note: Static IP address are charged separately. And if they are not assigned to a resource they are charged higher than allocated ones.*
-- Also VM(OS) doesn't know external IP address (irrespective option ephemeral or static), it is mapped transparently to internal IP by VPC. You can verify by the same by issuing ifconfig command within the shell. 
+- Also VM(OS) doesn't know external IP address (irrespective option ephemeral or static), it is mapped transparently to internal IP by VPC. You can verify by the same by issuing ifconfig command within the shell.
 - Its optional to have external IP address.
 - Assigning external IP address can choose from the below three options:
   - none
