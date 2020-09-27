@@ -204,7 +204,7 @@ Unit size | 1 MB/entity | ~ 1- Mb/cell, ~ 100Mb/row | 5 TB/obj | Determined by D
 | VPC | Private network within GCP | Deployed GCE VMs that are not exposed to the public internet |
 | Cloud Interconnect | Dedicated network to extend local data center | Access cloud resoruces from local application with low latency |
 | Cloud VPN | Secure access to GCP resrouces through public internet | Cheaper option to extent local data center to cloud |
-| Peering | Directly access cloud resources with reduce egress fee | Secure access to GCP and G suite resoruces via direct or carrier peering |
+| Peering | Directly access cloud resources with reduce egress fee | Secure access to GCP and G suite resources via direct or carrier peering |
 
 ## What are difference between GKE and App engine
 

@@ -39,22 +39,22 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
 ## Main modules and topics to know in depth
 
 - *setting up a cloud solution env*
-  - create projects (org >> folders >> projects >> resources)
-  - manage users in cloud identity (manually and automated)
-  - enabling APIs within project
-  - provision one or more stack driver workspace
-  - Create one or more billing accounts.
-  - link project to a billing account
-  - establishing billing account
-  - setting up billing exports to estimate daily/monthly charges.
+  - create projects (org >> folders >> projects >> resources) - DONE
+  - manage users in cloud identity (manually and automated) - you need a domain to enable cloud identity.
+  - enabling APIs within project - DONE
+  - provision one or more stack driver workspace - DONE
+  - Create one or more billing accounts - DONE
+  - link project to a billing account - DONE
+  - establishing billing account - DONE
+  - setting up billing exports to estimate daily/monthly charges - DONE
 - *Planning and configuring a cloud solution*
-  - **planning and estimate GCP product use using price calculator**
+  - **planning and estimate GCP product use using price calculator** - DONE
   - **planning and configure compute resources**
     - select appropriate compute choice for a given workload (compute engine, GKE, App Engine flexible, Cloud Run, Cloud Functions)
     - Using preemptible VMs and custom machine types as appropriate.
   - **Planning and configuring data storage options**
-    - cloud SQL, BigQuery, Cloud Spanner Cloud Bigtable)
-    - Choose storage options (standards, nearline coldline archive)
+    - cloud SQL, BigQuery, Cloud Spanner Cloud Bigtable) - DONE
+    - Choose storage options (standards, nearline coldline archive) - DONE
   - **Planning and configuring network resources**
     - differentiating load balancing options
     - identifying resources options
@@ -120,7 +120,7 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
     -working with management interfaces (cloud console, cloud shell, cloud SDK)
 - *Configuring access and security*
   - **IAM**
-    - Assign user predefined IAM roles within a project
+    - Assign user predefined IAM roles within a project - DONE
     - IAM role assignment
     - IAM role to accounts or Google group
     - Define custom IAM roles

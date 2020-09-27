@@ -2,6 +2,8 @@
 
 These services helps you to manage the cost and provide dashboard for viewing the GCP bills.
 
+> Refer example: 10-Basic-project-user-API-stackdriver-billingAC/02-configure-billing.md
+
 ## Billing Account
 
 - This is account act as a billing administrator.
@@ -25,7 +27,12 @@ These services helps you to manage the cost and provide dashboard for viewing th
 
 ## Billing export
 
-It helps you to store the detail billing details in a location where it is easy to retrieve. (For example: BigQuery or cloud storage.) These information can be later utilized for analytics.
+It helps you to store the detail billing details in a location where it is easy to retrieve. (Two types: BigQuery or cloud storage.) These information can be later utilized for analytics.
+
+- Big Query: sends you billing data to a BigQuery data sheet.
+  - you can send the pricing.
+  - you can send the Daily cost details
+- 
 
 ## Quotas
 
