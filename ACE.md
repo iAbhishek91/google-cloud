@@ -51,12 +51,12 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
   - **planning and estimate GCP product use using price calculator** - DONE
   - **planning and configure compute resources**
     - select appropriate compute choice for a given workload (compute engine, GKE, App Engine flexible, Cloud Run, Cloud Functions)
-    - Using preemptible VMs and custom machine types as appropriate.
+    - Using preemptible VMs and custom machine types as appropriate. - DONE
   - **Planning and configuring data storage options**
     - cloud SQL, BigQuery, Cloud Spanner Cloud Bigtable) - DONE
     - Choose storage options (standards, nearline coldline archive) - DONE
   - **Planning and configuring network resources**
-    - differentiating load balancing options
+    - differentiating load balancing options - DONE
     - identifying resources options
     - configuring cloud DNS.
 - *Deploying and implementing a cloud solution*

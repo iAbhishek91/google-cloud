@@ -6,7 +6,9 @@
 
 ## Steps
 
->NOTE: individual VM cant be used with LV, need to create a instance template and instance group
+>NOTE: individual VM cant be used with LV, need to create a instance template and instance group.
+Couple of reason are:
+1; when vm goes down, load balancer will not be able to get the new VMs.
 
 - Create two preemptive VM. *first vm | second vm*
   - Name: first-vm | second-vm
