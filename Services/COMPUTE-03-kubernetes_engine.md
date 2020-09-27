@@ -33,6 +33,52 @@
 - also you are **not billed** for master infra.
 - **Auto upgrade** depends on "master version" cluster configuration. It can be *release channel* or *static version*. if its static, then cluster admin need to manually upgrade the cluster. however if its configured as *release channel* then GKE auto upgrade k8s version for us.
 
+## Cluster Auto scaler
+
+Auto resize your cluster node-pool based on demand. When workload is high, auto scaler will add nodes to the node-pool, and vice-versa.
+
+> NOTE: Do NOT switch on auto-scaling on MIG, as autoscaling in compute engine and GKE are different.
+
+This is recommended as it will increase availability and effective cost managements.
+
+**How it works ?**
+Auto scaling works on per node-pool basis. GKE also takes care of cost of auto-scaling and it will automatically choose the cheapest option available.
+
+The auto scaling takes place based on resource request than actual utilization. Auto scaler periodically checks the status and takes decision.
+
+- if pod are unscheduled due to not enough nodes in the node pools, and max limit of auto scaler is not reached, new nodes will be added.
+- if nodes are under utilized and all pods are scheduled even with fewer nodes in the node pool it will auto delete.
+
+Manual changes & labels added after creation are not tracked, and will be lost in auto scaling.
+
+**Multi zonal/regional cluster with auto scaling**, will evenly scale up in all the zones. However while scale down it will only scale down in the current zone. This creates uneven distribution uneven.
+
+**Auto scale profile** whole purpose is to utilize resource in optimized way, but availability is compromised. New workload need to wait for scale up. For this trade off profile is introduced. There are two profile: *balanced* by default and *optimization-utilization*(this is not suggested for use).
+
+**Best Practice**
+Workload of a auto scale cluster should be able tolerate fault. *Common scenario: If you have one replica of a workload running on the cluster, the pod will be rescheduled to other nodes if the node is deleted. And this will create disruption*.
+
+> NOTE: While a cluster is under going autoscaling, if workloads are deleted at the same time then there might be transient disruption.
+
+## Vertical Pod auto scaling
+
+Horizontal pod auto scaling is provided by K8s as a resource, which allow pod to auto-scale based on cpu and memory. This will increase the number of replicas.
+
+however pod Vertical auto-scaling is adjusting resource request an limits of pod. PodDisruptionBudget are recommended to be configure in the cluster.
+
+**Advantages**
+Cluster resources re efficiently utilized as request and limits are close to actual.
+Also pods are scheduled on correct node.
+Maintenance time reduced.
+
+**Limits**
+500 pod are supported *VerticalPodAutoscaler* per cluster.
+supported on regional cluster.
+Don't combine horizontal and vertical auto scaling on cpu and memory.
+JVM based workload are not supported.
+
+**How it is achieved**: resource request and limits cant be changed on existing pod due to limitation of k8s. So GKE will evicts the pod and recreates it.
+
 ## API thats need to be enabled for GKE
 
 Google Kubernetes Engine API
@@ -68,8 +114,58 @@ You will be charged for the VMs, and cluster management fee.
 - **use case** attaching different node pool helps you to manage the cluster  efficiently by scheduling application based on resources. This optimizes the resource utilization.
 - we can create upgrade and delete node pools individually without affecting the cluster using "gcloud container node-pools"
 - By default all new node pools run the latest stable version of kubernetes, existing node pool can be manually upgraded or automatically upgraded.
+- Each node pool is deployed in **only one zone**. In case multi zone or regional cluster the node pool is replicated.
+  - each node pool creates a image template, from which managed & zonal image group is created.
+  - each image group gives birth to instance in a single zone.
+  - each vm will have separate persistent disk in the same region where the VMs are.
+- **node images** are OS images thats run on each nodes. We can upgrade the disk after it is created.
+- Specific node images that are commonly used:
+  - *container - optimized OS*: based on Linux kernel and optimized to enhance node security. Its is backed by google engineers for any patches or upgrades. Better that all other image in terms of support, stability and security.
+  - *Ubuntu*: It matches the GKE node image requirement. Use Ubuntu only if you need support of XFS, CephFS or Debian packages.
+  - *Windows server LTSC & SAC*: Long term support channel and semi annual channel.
+  - *containerd*: it comes with two flavor *cos-containerd* & *ubuntu-containerd*. Both the image have containerd as the runtime and directly integrated with kubernetes.
+  - storage driver ext4 is supported by cos and ubuntu. Additionally ubuntu supports XFS and CephFS.
 
 >NOTE: node pool are specific for GKE and if you dont have a cluster you cant create a node pool. As node pool needs a cluster name while creating.
+
+## Shielded VM
+
+These VMs are more secure and google makes sure **below restriction** are in place:
+
+- Every node in the cluster is a VM running in Google's data center.
+- Every node is part of the managed instance group provisioned for the cluster.
+- The kubelet is being provisioned a certificate for the node on which it is running.
+
+**Availability**:
+
+- Shielded GKE nodes are available in all regions and zones.
+- Shielded GKE nodes are available in GKE 1.13.6-gke.0 and higher.
+- Can be used with Container-Optimized OS (COS), COS with containerd, and Ubuntu node images.
+- Can be used with GPUs.
+
+**Upgrade or disable shielded VM feature**:
+
+- we can convert a existing cluster into a shielded VM cluster.
+- GKE will re-create master and nodes as shielded. There will be a downtime. Note: re-creation will not happens if its between maintenance window.
+
+- if you are disabling, same happens. The VMs are recreated as ordinary VM and there will be downtime.
+
+**shield options**: These are node-pool options. They are independent of each other and can be configured individually.
+
+- *Enable integrity monitor*
+- *Enable secure boot*: when enable third party unsigned kernel modules can be loaded, hence its disabled by default. If one is not using 3rd party modules its recommended to enable this settings.
+
+```sh
+# cluster creation time
+gcloud container cluster create cluster-name --shielded-secure-boot
+
+# node pool creation time
+gcloud container node-pool create pool-name --shielded-secure-boot
+```
+
+**Caveat**:
+
+- shield node is a cluster level configuration, once we enable this flag, any nodes created in a node pool without Shielded GKE Nodes enabled or created outside of any node pool will NOT be able to join the cluster.
 
 ### Choosing a minimum CPU platform
 
@@ -115,14 +211,21 @@ Very important: in multi-zonal or regional cluster the node-pools are replicated
   - There are three version of auto upgrade: *each channel are trade off b/w availability and update churn*
     - *rapid*: get latest version of k8s asap. Cluster is frequently upgraded.
     - *regular*(default): 2-3 months after releasing in rapid. It provides perfect balance between feature availability and release stability ans is recommended by Google.
-    - *Stable*: 2-3 after release in regular. is the last one hence features are available at last, but cluster are less frequently upgraded.
+    - *Stable*: 2-3 months after release in regular. is the last one hence features are available at last, but cluster are less frequently upgraded.
   - Critical security patches are released to all channels immediately.
   - Each channel has a default version which will be selected automatically. Google recommends to test the version before auto-upgrade. *Prevent yourself from version upgrade disruption*.
     - how to test the release version before its auto upgrade: in Q&A.
   - update channels of existing cluster:
     - upgrade: to one version is allowed. *stable to regular is allowed, however stable to rapid is not allowed.*
     - downgrade: not allowed, as it may result in downgrading k8s versions. *rapid to regular, regular to stable*
-  - Nodes are automatically upgraded recommended version based on the channel.
+  - Nodes are automatically upgraded to recommended version based on the channel.
+  - By default upgrade may occur any time in the day. But its suggested to define **maintenance window and exclusion**. They both are independent of each other and can be defined separately.
+    - **maintenance window**: Repeatable window when upgrade can happen.
+      - There are different types: off-peak, on-call, multi cluster.
+      - At least 24 hours of period within a span of 14 days.
+      - Example: starting from 12 midnight a duration of 24 hours on saturday.
+    - **maintenance exclusion**: is a time period when upgrade will be paused. There can be 3 exclusion time period allowed. Make sure you provide enough time to Google for upgrading the version. Not repeatable window.
+    > NOTE the caveats of **maintenance window and exclusion**: GKE reserves the right to override maintenance policies for critical security vulnerabilities. and they don't have any impact on other service upgrade. *they are only meant for kubernetes version upgrade.
 
 ### default
 
@@ -219,6 +322,20 @@ by default if you have only one cluster it will automatically configure. However
 gcloud container clusters get-credentials gke-k8s-cluster --zone europe-west2-c --project nice-beanbag-288720
 ```
 
+## Cluster multi tenancy
+
+>NOTE: its nothing from implementation side, just that it is shared between different teams and resource with different requirements.
+
+A single cluster can be shared by different users within same organization. Its a alternative to managing multiple single tenancy cluster. "Tenants" are user or workload.
+
+GKE makes sure that there are not malicious tenant which impacts other tenants.
+
+**Consideration**
+When you are planning for multi-tenancy cluster you should make sure a layer of resource segregation in the cluster, node, ns, po, node or containers. Also consider the security implication of sharing resources.
+
+**Advantages**
+easy maintenance, less resource fragmentation, and no time to give access to new tenant.
+
 ## GKE on-prem and other cloud
 
 This is a new feature of GKE - Anthos. Which allow you to connect the cluster available on premise or on other cloud.
@@ -258,7 +375,7 @@ GCP provides a feature called **VPC Native POD IP address(IP aliasing)** where a
 
 **Netpol** calico is used.
 
-**kubernetes secrets** are not encrypted by default, but in GKE they are encrypted with customer managed keys.
+**kubernetes secrets** are not encrypted by default, but in GKE they are encrypted with customer managed keys optionally. encrypt Secrets at the application layer using a key you manage in Cloud KMS.
 
 **Binary authorization** images that are signed by authenticated user can only run the image on the cluster else other images will not run.
 
