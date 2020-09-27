@@ -29,3 +29,5 @@ gcloud services enable run.googleapis.com
 gcloud services enable storage-component.googleapis.com
 gcloud services enable stackdriver.googleapis.com
 ```
+
+> Note: API are enabled GCP will automatically create service accounts for you. You may use the default service account or create your own.
