@@ -61,16 +61,16 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
     - configuring cloud DNS.
 - *Deploying and implementing a cloud solution*
   - **Compute engine**
-    - launch compute engine using cloud console, cloud SDK(gcloud), assign disk, availability policy and SSH keys.
-    - create an auto-scaled managed instance group using an instance template.
-    - Generating a custom SSH key for instances.
-    - Configuring a VM for stackdriver monitoring and logging.
-    - Accessing compute quotas and requesting increase.
-    - Installing the stack driver agent for monitoring and logging.
+    - launch compute engine using cloud console, cloud SDK(gcloud), assign disk, availability policy and SSH keys. - DONE
+    - create an auto-scaled managed instance group using an instance template. - DONE
+    - Generating a custom SSH key for instances. - DONE
+    - Configuring a VM for stackdriver monitoring and logging. - DONE
+    - Accessing compute quotas and requesting increase. - DONE
+    - Installing the stack driver agent for monitoring and logging. - DONE
   - **GKE**
-    - Deploying k8s cluster.
-    - deploying a container appliction to GKE using pods.
-    - configure GKE application monitoring and logging
+    - Deploying k8s cluster -DONE
+    - deploying a container appliction to GKE using pods - DONE
+    - configure GKE application monitoring and logging - DONE
   - **App engine | Cloud Run | Cloud Function**
     - deploying and application, updating scaling configuration, version and traffic splitting.
     - Deploying an application that receives Google Cloud events (cloud pub/sub events, cloud storage obj change notification events)
@@ -78,9 +78,9 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
     - initialize data system with products.
     - Loading data from CLI, API transfer, import/export load data from cloud storage, streaming data to cloud pub/sub.
   - **cloud VPC | Cloud VPN | cloud load balancer**
-    - create VPC with subnets
+    - create VPC with subnets - DONE
     - launching a compute engine instance with custom network configuration (eg internal-only IP address, Google private access, Static external and private IP address, network tags.)
-    - create VPN between a googld VPC and an external network using cloud VPN.
+    - create VPN between a google VPC and an external network using cloud VPN. (VPN peering | interconnect | )
     - Creating a load balancer to distribute application network traffic to ana application
       - global http(s) load balancer
       - global SSL proxy load balancer
@@ -89,29 +89,29 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
       - regional internal load balancer
   - **cloud marketplace**
     - browser cloud market place catalog and viewing solution details
-    - deploying a cloud marketplace solution
+    - deploying a cloud marketplace solution - DONE
   - **cloud deployment manager**
     - developing deployment manager templates
     - launching deployment manager templates
 - *ensure successful operation of a cloud solution*
   - **Manage compute resource**
-    - single VM instance - Start | Stop | Edit configuration or Delete an instance
-    - SSH/RDP to the instance
-    - Attaching a GPU to a new instance and installing CUDA libraries.
-    - Viewing currect running VM inventories
-    - Working with snapshots - create snapshots, veiw snapshots | delete snapshots
-    - Working with instane groups - set autoscaling parameters, assing instance template create an instance template , removing instance group.
-    - Working with management interfaces - cloud console, cloud shell, Gcloud SDK.
+    - single VM instance - Start | Stop | Edit configuration or Delete an instance - DONE
+    - SSH/RDP to the instance - DONE
+    - Attaching a GPU to a new instance and installing CUDA libraries. - DONE
+    - Viewing current running VM inventories - DONE
+    - Working with snapshots - create snapshots, veiw snapshots | delete snapshots - DONE
+    - Working with instane groups - set autoscaling parameters, assing instance template create an instance template , removing instance group. - DONE
+    - Working with management interfaces - cloud console, cloud shell, Gcloud SDK. - DONE
   - **Managing Kubernetes Engine resources**
     - Viewing current running cluster inventory (nodes, pods services etc)
     - browsing the container image repository and viewing container image details
-    - working with node pools - add, edit or remove a node pool
-    - working with pods - add, edit or remove pods
-    - working with services - add, edit or remove services.
+    - working with node pools - add, edit or remove a node pool - DONE
+    - working with pods - add, edit or remove pods - DONE
+    - working with services - add, edit or remove services. - DONE
     - working with stateful applications - persistent volumes, stateful sets
-    - working with management interfaces - cloud console, cloud shell,cloud sdk
+    - working with management interfaces - cloud console, cloud shell,cloud sdk - DONE
   - **Managing App Engine & cloud run resources**
-    - Moving objects between cloud storage buckets
+    - Moving objects between cloud storage buckets - DONE
     - Converting cloud storage buckets between storage classes
     - setting object life cycle management policies for cloud storage buckets
     - executing queries to retrieve data from data instances (cloud SQL, BigQuery, cloud Spanner, cloud Datastore, cloud Bigtable)
@@ -123,10 +123,10 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
     - Assign user predefined IAM roles within a project - DONE
     - IAM role assignment
     - IAM role to accounts or Google group
-    - Define custom IAM roles
-    - manage service accounts
-    - Assigning svc accounts to VM
-    - granting access to svc account in another project
+    - Define custom IAM roles - DONE
+    - manage service accounts - DONE
+    - Assigning svc accounts to VM - DONE
+    - granting access to svc account in another project - DONE
     - viewing audit logs for project and manged services
 
 ## Reference
