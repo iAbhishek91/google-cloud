@@ -79,7 +79,7 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
     - Loading data from CLI, API transfer, import/export load data from cloud storage, streaming data to cloud pub/sub.
   - **cloud VPC | Cloud VPN | cloud load balancer**
     - create VPC with subnets - DONE
-    - launching a compute engine instance with custom network configuration (eg internal-only IP address, Google private access, Static external and private IP address, network tags.)
+    - launching a compute engine instance with custom network configuration (eg internal-only IP address, Google private access, Static external and private IP address, network tags.) -  DONE
     - create VPN between a google VPC and an external network using cloud VPN. (VPN peering | interconnect | )
     - Creating a load balancer to distribute application network traffic to ana application
       - global http(s) load balancer
@@ -88,7 +88,7 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
       - regional network load balancer
       - regional internal load balancer
   - **cloud marketplace**
-    - browser cloud market place catalog and viewing solution details
+    - browser cloud market place catalog and viewing solution details - DONE
     - deploying a cloud marketplace solution - DONE
   - **cloud deployment manager**
     - developing deployment manager templates

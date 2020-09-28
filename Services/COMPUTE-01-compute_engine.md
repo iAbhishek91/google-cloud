@@ -217,6 +217,16 @@ To request to increase the quotas in cloud console is free. If the quota increas
 
 Serviceusage.quotas.update permission is required, this already included in owner, editor and quota admin.
 
+## Network Tags
+
+Network tags are strings that are assigned to instances or instances templates.
+
+Tags helps to group VMs while creating firewall rules, routes.
+
+Network tags can be edited without stopping the VM.
+
+64 tags per VM, which a max-length of 63 characters.
+
 ## Attributes required for VM pricing
 
 ### Instance
