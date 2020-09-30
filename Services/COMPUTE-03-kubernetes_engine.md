@@ -381,6 +381,28 @@ GCP provides a feature called **VPC Native POD IP address(IP aliasing)** where a
 
 **Container registry and vulnerability scanning** built in feature in GCR.
 
+## Storage
+
+PV are mostly backed by *compute engine persistent disk*. But this is not the only option we can use NFS, and *file store* is the NFS solution in GCP.
+
+### Under the hood of GCP automation
+
+When we create PVC, GCP automatically creates a persistent disk of type ext4, and then creates a PV referring that. Access mode (readWriteOnce or readWriteMany) and capacity is adjusted by GCP. Basically most of the time user need not create a PV. But for other scenario its is required.
+
+### Persistent Volumes and Persistent Volume Claim
+
+- Persistent Volumes are managed by kubernetes unlike volumes.
+- its a cluster resource(or k8s resource), which exists independent of pods.
+- PV are consumed by PVC. PVC specifically do not link with PV however to consume PV there are certain matching criteria (like storage class, read write mode, amount of disk claimed)
+
+### Storage Class
+
+- Volume implementation such as **gcpPersistentDisk** are configured through storage class.
+- GCP persistent disk by default is created on compute engines persistent disk with fs-type of ext4.
+- Default storage class is used when PVC do not mention any storageClassName.
+- The default storage class is not supported by windows as ext4 do not support by default.
+- We can create a storage class to define different class of storage, classes might map to quality of service level, or backup policies.
+
 ## Monitoring and tools
 
 **Stackdriver kubernetes monitor** it can monitor nodes, and kubernetes resources as well.

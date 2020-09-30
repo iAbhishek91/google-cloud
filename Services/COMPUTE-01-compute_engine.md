@@ -13,7 +13,7 @@ from Console or GCloud command line tool.
 - select the **boot image** of the OS - windows and linux, also import images from other places.
 - we can also pass a **startup scripts**, to be executed when a VM boots to configure their VMs.
 - there are also **shutdown script**, there are specific time limit. *Lesser for preemptive VMs ~ 30sec*
-- Take **snapshots of the VMs** when we need to migrate to another region.
+- Take **snapshots of the VMs** when we need to migrate to another region. Snapshot are incremental backups. Disks snapshot can be taken. Snapshot cant be taken for local and RAM disk.
 - Auto scaling.
 - **host maintenance** regular maintenance activity will migrate your VMs to other physical server without downtime.
 
@@ -21,14 +21,24 @@ from Console or GCloud command line tool.
 
 Pre-defined machine type: Ratio of GB of memory per vCPU.
 
-- Standard: n1-standard-1 to n1-standard-96 | mem: 3.75/vCPU | max # 128 | Max PD 64 TB | used for task that require balance of CPU and memory |
-- High-memory: n1-highmem-2 to n1-highmem-96 | mem: 6.5/vCPU | max # 128 | Max PD 64 TB | more use of memory task compared to CPU |
-- High-CPU: n1-highcpu-2 to n1-highcpu-96 | mem: 0.9/vCPU | max # 128 | Max PD 64 TB | more use of vCPU task compared to memory |
-- Memory-Optimized: n1-ultramem-40 to n1-ultramem-160, n1-megamem-96 | mem: >14GB/vCPU | max # 128 | Max PD 64 TB | memory intensive job - in memory databases, like SAP Hana, In memory analytics etc|
-- Compute-Optimized: c2-standard-4 to c2-standard-60 | max # 128 | Max PD 64 TB | compute intensive job - highest power vCPU and runs on newer platform |
-- Shared core: f1-micro & g1-small | 0.2 vCPU to 0.5 vCPU respectively | max # 16 | Max PD 3 TB | good for small workload and cost effective . |
+- *Standard*: n1-standard-1 to n1-standard-96 | mem: 3.75/vCPU | max # 128 | Max PD 64 TB | used for task that require balance of CPU and memory |
+- *High-memory*: n1-highmem-2 to n1-highmem-96 | mem: 6.5/vCPU | max # 128 | Max PD 64 TB | more use of memory task compared to CPU |
+- *High-CPU*: n1-highcpu-2 to n1-highcpu-96 | mem: 0.9/vCPU | max # 128 | Max PD 64 TB | more use of vCPU task compared to memory |
+- *Memory-Optimized*: n1-ultramem-40 to n1-ultramem-160, n1-megamem-96 | mem: >14GB/vCPU | max # 128 | Max PD 64 TB | memory intensive job - in memory databases, like SAP Hana, In memory analytics etc|
+- *Compute-Optimized*: c2-standard-4 to c2-standard-60 | max # 128 | Max PD 64 TB | compute intensive job - highest power vCPU and runs on newer platform |
+- *Shared core*: f1-micro & g1-small | 0.2 vCPU to 0.5 vCPU respectively | max # 16 | Max PD 3 TB | good for small workload and cost effective . |
 
 We also have custom type where you can choose vCPU and Memory.
+
+## Images
+
+Each images consist of *Boot loader*, *OS*, *file system structure*, *in built softwares* and *customization*
+
+BIOS initiate the boot loader, which inturn initiate the OS.
+
+Every image supports certain type of file system.
+
+**Minimum charges**: All VMs are charged per sec with 1 min minimum, with exception to SQL server images which are charged with per min with 10 min minimum. These price are global and do not vary based on region.
 
 ## Bursting capabilities
 
@@ -50,6 +60,7 @@ Dedicated VMs, it will not be terminated if its required else where.
 
 - These VMs can be taken away anytime if they are required anywhere else.
 - its a good way to save money, as they are cheaper. *80% cheaper*.
+- They are NOT combined with sustained or committed discount.
 - **use cases**: VMs which mainly use to run long jobs with no human interactions. Make sure to start and stop the job in case of failure. Basically jobs running of preemptible VMs are to be fault tolerant.
 - It last only 24 hours, or sooner.
 - Automatic restart is not possible on preemptible VMs.
@@ -226,6 +237,45 @@ Tags helps to group VMs while creating firewall rules, routes.
 Network tags can be edited without stopping the VM.
 
 64 tags per VM, which a max-length of 63 characters.
+
+## Metadata
+
+- Metadata are information about the VM which are accessed using key-value pair data.
+- Every instance stores it metadata on a separate metadata server.
+- These metadata can be accessed by startup script, shutdown scripts.
+- These script are highly reusable and hence can be stored in cloud storage. *This is possible as the metadata keys for all the VMs are common*.
+- we can also add custom metadata.
+
+## Move VM from one zone to another
+
+- Mainly because a Zone is deprecated.
+- **gcloud compute instances move**
+- References to VMs are to be updated manually.
+
+## Move VM from one region to another
+
+- No automatic process available.
+- Follow the below step for VM movement:
+  - snapshot all the persistent disks on the source VM.
+  - create a new persistent disk in destined zone and attach new persistent disk.
+  - assign new static IP address to th VM
+  - update reference of the VM.
+  - clean up: delete original persistent disk, snapshot, and VM
+
+## snapshots
+
+- Snapshot are saved in cloud storage.
+- Not available for local SSD or RAM disk.
+- Snapshots are incremental and automatically compressed.
+- Its recommended to have regular backup in cheaper cost than un periodic full backup of the disk.
+- Cron job can be used for periodic backup.
+- Snapshot do NOT backup VM metadata and tags.
+- **Use Cases**:
+  - backup data in a durable storage solution. Later can be used for recovery or HA purpose.
+  - used for migration of VM bw zones or regions.
+  - used for migrating data from new disk type. *For example: from HDD to SDD drive*.
+
+> NOTE: resizing your persistent disk *mostly to increase the IO performance.*. We can migrate from one disk to another WITHOUT creating a snapshot. The current disk can still be attached to a running VM.
 
 ## Attributes required for VM pricing
 

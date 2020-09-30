@@ -4,26 +4,43 @@ Below are the storage option used by VM - there are different type based on pric
 
 By default one single boot persistent disk is attached with each VM that contain the operating system. When application need more storage we need to choose one or more additional storage options for your instance.
 
+Boot disk are bootable, that means it contain the OS and VM can boot from those. IF we want to persist that disk and keep the configuration, we can choose a option of not deleting the VM on deletion.
+
 Types are as below:
 
 - **Zonal persistent disk**: Efficient | reliable block store | 10GB to 64TB | Max/VM: 257TB | encrypt at rest | Custom encrypt key |
 - **Regional persistent disk** HA (replicated in 2 zones) | regional block store. | 10GB to 64TB | Max/VM: 257TB | encrypt at rest | Custom encrypt key |
-- **Local SSD** High performance | transient | local block storage | 375GB | encrypt at rest | No custom encrypt key | limit of 24 local SSD partition (again based on machine type) for max of 9 TB per VM. | cannot be used as boot device | need to format and mount the device before using it.
+- **Local SSD** High performance | transient or ephemeral (gone if VM stops or restarts) | local block storage | 375GB | encrypt at rest | No custom encrypt key | limit of 24 local SSD partition (again based on machine type), max of 8 local disk for max of 3 TB per VM. | cannot be used as boot device | need to format and mount the device before using it.
+- **RAM disk** These are not separately available, comes out of box with machine types. For more RAM disk selects the high memory machine type. Fastest memory in GCP | No encryption at rest
 - **Cloud storage buckets** Refer: STORAGE-0X-cloud-storage.md
 - **FileStore** Refer: STORAGE-0X-Filestore.md
 
 > NOTE: even though cloud-storage and filestore can be attached to VMs we are focusing on the block storage.
 
-- block storage devices are similar to hard disk.
+- block storage devices are similar to hard disk. *However there are differences, see below the differences*
+- They are attached via network interface.
 - They are independent of VMs and can be attached to the VMs as required. (Apart from local SSD, which are deleted when the VM is deleted)
+- They have scalable performance with size. **You can never shrink, but can always expand.**
 
 > Independent means lifecycle of persistent disk are not dependent on VMs. Specifically Zonal an Regional persistent disk.
 
 - Share single disk b/w multiple VMs, one VM can be the writer and others are reader.
 
-> Due to this one disk can be attached to multiple VMs where one VM write and other may read.
+> Due to *readonly attachment* one disk can be attached to multiple VMs where one VM write and other may read.
 
 - Both supports SSD(also known as balanced) and HDD(also known as standard).
+
+## Difference between a physical hard disk and physical storage
+
+- *Traditional physical hard disk*:
+  - for using we need to partition it *either using as MBR or GBS, using fdisk for et*, they to grow we need to re-partition it, and most probably format it.
+  - For redundancy, need to create redundant disk array.
+  - Sub volume management and snapshot.
+  - Encrypt files before writing to disk.
+- *Cloud physical storage*
+  - They are basically **virtual network devices**
+  - Single file system is best.
+  - all encryption, redundancy, scaling and snapshot are managed under the hood by GCP.
 
 ## Format, Mount local SSD
 
