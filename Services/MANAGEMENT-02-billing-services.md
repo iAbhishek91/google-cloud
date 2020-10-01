@@ -15,7 +15,21 @@ These services helps you to manage the cost and provide dashboard for viewing th
 - GCP charge automatically or invoiced every month or at threshold limit.
 - Additionally we can create sub accounts to separate billing for a project.
 
-## Budget and alerts
+## Billing service features
+
+- **Reports**: they are like statements service based on some filters of a particular billing account. *There is no configuration available*.
+- **Cost table & breakdown**: gives the details about cost and its breakdown. *There are no configuration available*.
+- **Commitments**: its compute engine commitment user discounts.
+- **Budge and alerts**: ref below
+- **Billing export**: ref below
+- **Pricing**: Prices of different services provided by Google, not only gcp.
+- **Documents**: Document related to purchase or provision will show here.
+- **Transaction**: money transactions for some data range are shown here.
+- **Payment settings**: contact details how you pay *monthly*, payment account id, payment account nick name,  payment profile id, country, address, Payment user - *actual user doing the payment*.
+- **Payment methods**: the debit and credit card details.
+- **Account managements**: project associated with the billing account. *Disable* or *change* billing accounts.
+
+### Budget and alerts
 
 - Configure budget per GCP billing account or per GCP projects.
 - Budget can be a fixed limit or can tie it to a another metric(% of previous month spend).
@@ -25,20 +39,10 @@ These services helps you to manage the cost and provide dashboard for viewing th
 
 > NOTE: Setting a budget does not cap API usage.
 
-## Billing export
+### Billing export
 
 It helps you to store the detail billing details in a location where it is easy to retrieve. (Two types: BigQuery or cloud storage.) These information can be later utilized for analytics.
 
 - Big Query: sends you billing data to a BigQuery data sheet.
   - you can send the pricing.
   - you can send the Daily cost details
-- 
-
-## Quotas
-
-- This services prevents from over consumption of resources. Configure limit on resources used.
-- Quotas are allocated on project levels.
-- Two different type of quotas:
-  - **Rate quotas**: (for example: 1000 requests per 10 seconds)
-  - **Allocation quotas**: (for example: 5 network per project)
-- to change quotas, we need to request from the IAM and update. This change request is free of cost. Some needs request to GCP support team. we can also change th quotas from CLI.

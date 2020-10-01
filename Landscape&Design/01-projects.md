@@ -2,7 +2,7 @@
 
 ## What are projects
 
-- Projects are cloud resources that are managed as an administrative unit.
+- Projects are cloud resources that are managed as an administrative unit * they are recommended to have same trust factor*.
 - GCP resources can only be created and consumed under a project.
 - Its also a represent a billable unit. Allocate a credit card to a project and every resources under a project can be billed from that.
 - There are limits (23) in the number of project we can create by default. It can be increased by requesting GCP.
@@ -31,10 +31,17 @@
 
 ## How to create an organization node
 
-Answer depends on if your organization have a G-suite enrolled.
+Answer depends on if your organization have a *G-suite* enrolled or *cloud Identity* account. When any of the above is available organization is created when GCP is registered.
 
-- if yes, automatically everything will be under an organization.
-- else, you can use google cloud identity to create one.
+- There will be one G-suite or cloud-identity *super administrator*, their responsibilities are:
+  - They generally creates *Organization admin* to some other users.
+  - They are also point of contact for any recovery issues.
+  - Control the lifecycle of G-Suite or cloud identity account and organization resources.
+- *Organization admin*'s roles and responsibilities
+  - Define IAM policies.
+  - Determine(NOT define) the structure of the resource hierarchy (folders and projects)
+  - Delegate roles to specialized IAM roles like (Network, Billing, & resources hierarchy)
+  - This role cannot perform any other actions. such as creating folder or project etc.
 
 ## Shutting down a project
 
