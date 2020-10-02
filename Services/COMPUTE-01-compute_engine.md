@@ -24,7 +24,7 @@ Pre-defined machine type: Ratio of GB of memory per vCPU.
 - *Standard*: n1-standard-1 to n1-standard-96 | mem: 3.75/vCPU | max # 128 | Max PD 64 TB | used for task that require balance of CPU and memory |
 - *High-memory*: n1-highmem-2 to n1-highmem-96 | mem: 6.5/vCPU | max # 128 | Max PD 64 TB | more use of memory task compared to CPU |
 - *High-CPU*: n1-highcpu-2 to n1-highcpu-96 | mem: 0.9/vCPU | max # 128 | Max PD 64 TB | more use of vCPU task compared to memory |
-- *Memory-Optimized*: n1-ultramem-40 to n1-ultramem-160, n1-megamem-96 | mem: >14GB/vCPU | max # 128 | Max PD 64 TB | memory intensive job - in memory databases, like SAP Hana, In memory analytics etc|
+- *Memory-Optimized*: m1-ultramem-40 to m1-ultramem-160, m1-megamem-96 | mem: >14GB/vCPU | max # 128 | Max PD 64 TB | memory intensive job - in memory databases, like SAP Hana, In memory analytics etc|
 - *Compute-Optimized*: c2-standard-4 to c2-standard-60 | max # 128 | Max PD 64 TB | compute intensive job - highest power vCPU and runs on newer platform |
 - *Shared core*: f1-micro & g1-small | 0.2 vCPU to 0.5 vCPU respectively | max # 16 | Max PD 3 TB | good for small workload and cost effective . |
 
@@ -150,6 +150,8 @@ We need to create health check, else it will enable autoHealing based on VMs sta
 
 - **Committed use discount** offered if procurement is based on 1 year or 3 year contract. *57% of discount for most of the machine types, 70% for memory optimized*.
 
+> NOTE: The offers are never combined. Hence preemptive VM, can have sustained use discount, or committed use discount.
+
 ## SSH and RDP
 
 Creator of the VM has full root privileges to the VM instances.
@@ -181,7 +183,7 @@ Protocol used is 3389
 **SUSPENDING**: the instance is being suspended manually. Its like sleep. *Use cases: currently not required, but can bring back the instance quickly | you dont mind paying google to preserver the state of ur VM.*.
 **SUSPENDED**: instance is already suspended, resume it or delete it.
 
-> PRICING for suspended: Preserver the state(state of RAM) of the VMy for u. pay for resource that are still attached to the VM (disk, internal ip, MAC address), ephemeral ext IP address are released. But no cost of running the VM.
+> PRICING for suspended: Preserver the state(state of RAM) of the VMy for u. pay for resource that are still attached to the VM (disk, internal ip, MAC address), ephemeral ext IP address are released.
 > PRICING for terminated: no charge for running the instance, the state of the VM is not preserved. you pay for resource that are still attached to the VM (disk, internal ip, MAC address), ephemeral ext IP address are released. But no cost of running the VM.
 
 [VM lifecycle](https://cloud.google.com/compute/docs/instances/instance-life-cycle)
@@ -296,7 +298,7 @@ Network tags can be edited without stopping the VM.
 
 ### Self tenant nodes
 
-- Since we are paying for the physical server (vCPU and memory) we need to pay extra for VMs on the sole tenant nodes.
+- Since we are paying for the physical server (vCPU and memory) we need NOT pay extra for VMs on the sole tenant nodes.
 
 ### Persistent Disk
 

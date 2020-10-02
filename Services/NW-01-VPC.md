@@ -16,7 +16,7 @@ Here we discuss about network, subnet, IP address, DNS (refer DNS.md), routes an
 - fine grain networking policies with in GCP or GCP and on-premise network or b/w other cloud providers.
 - define firewall rules(using metadata tags), (no need to manage a firewall software its managed by GCP).
 - segment the network
-- categorize the resources using tags and apply firewall rules.
+- categorize the resources using network tags and apply firewall rules.
 - how they are connected with internet.
 - VPC are securely connected in hybrid env using cloud VPN or cloud interconnect.
 
@@ -25,6 +25,8 @@ Here we discuss about network, subnet, IP address, DNS (refer DNS.md), routes an
 - Also VPC are logically isolated from each other.
 - connection between VPCs are done using VPC peering.
 - we can share and manage access b/w VPCs provided IAM, this is known as shared VPC.
+
+> NOTE: shared VPC are available for projects with organization. Read more about shared VPC.
 
 ## VPN gateway
 
@@ -89,8 +91,8 @@ VPC have a global scope. and subnets are regional and spans several zones.
 - Its optional to have external IP address.
 - Assigning external IP address can choose from the below three options:
   - none
-  - choose static from the pool (ephemeral)
-  -choose static
+  - choose from the pool (ephemeral) (default)
+  - choose static
 
 ## Interconnection between object from networking perspective
 
@@ -220,7 +222,7 @@ Firewall rules consist of following parameters:
 
 ### Increase availability on same region
 
-With multiple zone **us-west-1a**, **us-west-1b** on same region with a single subnet. This may save from additional security complexity.
+With multiple zone **us-west1-a**, **us-west1-b** on same region with a single subnet. This may save from additional security complexity.
 
 ### Globalization
 
