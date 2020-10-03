@@ -182,7 +182,23 @@ If any of the "Release channel" is selected as master version.
 | *Capacity* | TB+ | PB+ | PB+ | TB | PB | PB+ |
 Unit size | 1 MB/entity | ~ 1- Mb/cell, ~ 100Mb/row | 5 TB/obj | Determined by DB engine | 10240 Mib/row | 10 MB/row |
 | *Best for* | semi structured app data, durable key-value data | "Flat" data, heavy read/write, events, analytical data | structured and unstructured binary or object data | Web frameworks, existing applications | large scale db app (> ~ 2 TB) | Interactive querying, offline analytics |
-|*Use cases* | Getting started, app engine app | AdTech, Finantial & IoT data | Images, large media, backups | User credentials, customer orders | whenever high i/O, global consistency in needed | Data warehousing |
+|*Use cases* | Getting started, app engine app | AdTech, Financial & IoT data | Images, large media, backups | User credentials, customer orders | whenever high i/O, global consistency in needed | Data warehousing |
+
+>Decision tree:
+
+```js
+data == "STRUCTURED"
+  ? data == "ANALYTICAL"
+    ? need == "updates or low latency"
+      ? //go for CLOUD BIGTABLE
+      : //go for CLOUD BIGQUERY
+    : data == "RELATIONAL"
+      ? need == "horizontal scalability"
+        ? // go for CLOUD SPANNER
+        : // go for CLOUD SQL
+      : // go for CLOUD FILESTORE
+  : // go for CLOUD STORAGE
+```
 
 ## Compare Standard and Flexible App engine
 
@@ -193,7 +209,7 @@ Unit size | 1 MB/entity | ~ 1- Mb/cell, ~ 100Mb/row | 5 TB/obj | Determined by D
 | *Write to local disk* | No | Yes (but ephemeral) |
 | *Support third party binaries* | No | Yes |
 | *N/W access* | via App engine service | Yes |
-| *Pricing model* | After free daily use, pay per instance class, wioth automatic shutdown | Pay for resource allocation per hour, no automatic shutdown |
+| *Pricing model* | After free daily use, pay per instance class, with automatic shutdown | Pay for resource allocation per hour, no automatic shutdown |
 
 ## Compare different network services with feature and use cases
 
@@ -202,8 +218,8 @@ Unit size | 1 MB/entity | ~ 1- Mb/cell, ~ 100Mb/row | 5 TB/obj | Determined by D
 | HTTP(s) Load balancing | Global load balancing of HTTP(s) endpoints | CMS deployed in multiple regions |
 | TCP Load Balancing | Regional load balancing of TCP/UDP endpoints | Distribute traffic evenly across gaming backend service |
 | VPC | Private network within GCP | Deployed GCE VMs that are not exposed to the public internet |
-| Cloud Interconnect | Dedicated network to extend local data center | Access cloud resoruces from local application with low latency |
-| Cloud VPN | Secure access to GCP resrouces through public internet | Cheaper option to extent local data center to cloud |
+| Cloud Interconnect | Dedicated network to extend local data center | Access cloud resources from local application with low latency |
+| Cloud VPN | Secure access to GCP resources through public internet | Cheaper option to extent local data center to cloud |
 | Peering | Directly access cloud resources with reduce egress fee | Secure access to GCP and G suite resources via direct or carrier peering |
 
 ## What are difference between GKE and App engine

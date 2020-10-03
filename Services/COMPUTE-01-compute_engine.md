@@ -121,6 +121,10 @@ We need to create health check, else it will enable autoHealing based on VMs sta
 
 [auto healing instance in migs](https://cloud.google.com/compute/docs/instance-groups/autohealing-instances-in-migs)
 
+## Service accounts
+
+Only one Service accounts are allowed per VM, but same service accounts can be used by multiple VMs.
+
 ## Sole tenant nodes
 
 - deploy your VM on a dedicated machine.
