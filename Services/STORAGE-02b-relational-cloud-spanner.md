@@ -14,6 +14,12 @@ Unique offering from GCP, this service is very similar to cloud-SQL.
   - Witness
 
 - **Use cases**: sharding your databases for high throughput.
-  - or to maintain out grown RDBMS.
+  - or to maintain out grown single RDBMS instance
+  - strong transactional consistency and DB consolidation
   - Global data with strong consistency.
   - common use cases: financial applications and inventory applications.
+
+## Architecture of spanner
+
+- It automatically replicate data in "n - cloud zone" can be on same or multiple regions.
+- The data will be sync using google fiber network.
