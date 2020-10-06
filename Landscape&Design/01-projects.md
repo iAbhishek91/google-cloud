@@ -15,8 +15,10 @@
 - fine grain roles are defined at organization layer. Organization policy administrator, project creator.
 - in every layer policies can be applied and the polices are implied downward.
 
+> NOTE: Resource manager is a screen in Google cloud which allow us to manage Organization, folders and projects.
 > NOTE: if you have owner permission on project, and the resource is restricted with more stronger policy. Then the owner will still have owner rights to all the resources.
 > NOTE: individual account do not have Organization and Folder, as these are available only to corporate accounts with G-suite.
+> Each resource can have up to 64 labels.
 
 ## How to access Projects
 

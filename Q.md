@@ -8,6 +8,36 @@
 
 Measured service is one of the main paradigm of cloud computing, where customer can provision, use and pay for the amount of resources consumed. every thing on demand.
 
+## What the key factors for resource management in GCP
+
+- Resource Manager
+- Billing (billing and alerts)
+- Quotas
+- Labels and names
+- Enable and disable Service and API
+
+## Few use cases of labels, and categories type
+
+- based on teams and cost center. Helps in billing and budgeting and organizing resources based on teams.
+- based on components. Helps in performing common tasks. Components: redis | frontend
+- based on environment: environment: prod | test
+- based on owner: Helps in reporting. owner: abhishek
+- based on use: state: will-be-decommissioned.
+
+## What are difference between labels and tags
+
+**Labels** are for organizing resources (same how we use in k8s), but **tags** on the other hand are applied only to instances and mainly for networking.
+
+Labels comes as key-value pair however, tags comes as a single string.
+
+## Resource categorization based on location - global, regional and zonal
+
+- Global: cloud storage, Networks, images
+- Regional: External IP address
+- Zonal: VM, disk
+
+> REgardless of the type of resource they are kept under project.
+
 ## what is relation between Project and Region
 
 ## Where we can find the events triggered by some service by user or by GCP

@@ -7,6 +7,7 @@ Googles Identity manager, which manages **who** can do **what** for **which** re
 
 ## Policies
 
+- **Policies** are applied on resources.
 - **Policies** are NOT a resources by themselves, but are combination of *identities/members* and *roles* with *few optional condition like expiry date..
 - Google- definition: *A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role*
 - Polices are inherited from the parent. Each resources can have only one parent.
@@ -17,7 +18,7 @@ Googles Identity manager, which manages **who** can do **what** for **which** re
 - can do **what**(actions/verb) : collection of permissions (start, stop, create, delete) grouped together in a role (dev, admin, reporter ).
 - on **which**(resources) :  operation performed on a specific resources. Under the hood they corresponds to REST method of GCP resources(Publisher.Publish() -> pubsub.topics.publish).For eg: create a VM, list a VM etc.
 
-> NOTE: *Which* and *What* combines together to form
+> NOTE: *Which* and *What* combines together to form permissions
 > NOTE: Permissions are structured in format *service*.*resource*.*verb*
 > NOTE: Permission CANNOT be assigned directly to members or users. It need to be grouped in roles and then assigned to identities.
 
@@ -110,6 +111,7 @@ Below three details are required to configure the SAML SSO:
 - Two different type of quotas:
   - **Rate quotas**: (for example: 1000 requests per 10 seconds)
   - **Allocation quotas**: (for example: 5 network per project)
+  - **Region quotas**: similar to allocation quotas but applied on each region. (for example: 24 CPUs region/project)
 - to change quotas, we need to request from the IAM and update. This change request is free of cost. Some needs request to GCP support team. we can also change th quotas from CLI.
 
 ## Best practices for IAM

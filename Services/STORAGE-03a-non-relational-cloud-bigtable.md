@@ -20,6 +20,11 @@
   - Scalable without down time.
   - Security: Like cloud-storage, cloud Bigtables contents are always encrypted at rest and in flight.
   - Authorization via IAM.
+  - Great choice for analytical and operational application. Also for machine learning applications.
+
+> NOTE: choose Big Table over cloud firestore if transactional consistency is NOT required.
+> Cloud filestore scale down well, and Cloud bigtable scales up well.
+> Cloud filestore is a document database, however big table is wide column database.
 
 - Google big table is the same database used Google it self in Search, Maps and analytics and Gmail.
 

@@ -12,3 +12,7 @@ Just create a data-set in bigQuery.
 
 - name: doctord_could_bills
 - location: eu-west2
+
+### Which data storage service provides data warehouse services for storing data but also offers an interactive SQL interface for querying the data
+
+Big Query

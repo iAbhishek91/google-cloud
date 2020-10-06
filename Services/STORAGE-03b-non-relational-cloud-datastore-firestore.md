@@ -20,4 +20,14 @@
   
 ## Firestore
 
-- Its next gen db or upgraded version of Datastore.
+- Its next gen db or upgraded version of Datastore. Fire store can run in datastore mode(suitable for server projects) and Native mode.
+  - When to use what?: if application is server project use datastore mode, for mobile and IoT use the native mode.
+- Its no-sql document database.
+- simplify storage, sync and offline support.
+- like Cloud SQL and spanner, Firestore also support ACID transactions.
+- Multi-region replication.
+- Powerful query engine. hence we can run complex queries on the instance without any degradation.
+
+- **Use case**
+  - If requirement is Highly scalable nosql database.
+  - suitable for Mobile, web IoT apps at global scale.
