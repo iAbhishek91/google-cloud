@@ -6,4 +6,4 @@ This can really accelerate content delivery in your application.
 
 We can also interconnect internal CDN via CDN interconnect program.
 
-This can optimize the overall network bill.
+This can optimize the overall network usage and hence the bill.
