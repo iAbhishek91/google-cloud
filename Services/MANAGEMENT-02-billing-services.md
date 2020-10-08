@@ -19,7 +19,7 @@ These services helps you to manage the cost and provide dashboard for viewing th
 
 - **Reports**: they are like statements service based on some filters of a particular billing account. *There is no configuration available*.
 - **Cost table & breakdown**: gives the details about cost and its breakdown. *There are no configuration available*.
-- **Commitments**: its compute engine commitment user discounts.
+- **Commitments**: its specific to compute engine commitment user discounts.
 - **Budge and alerts**: ref below
 - **Billing export**: ref below
 - **Pricing**: Prices of different services provided by Google, not only gcp.

@@ -104,7 +104,7 @@ Below three details are required to configure the SAML SSO:
 
 > SSO is redirecting to one common authentication platform and granting permission to the base site. Basically authorization is delegated.
 
-### Quotas
+## Quotas
 
 - This services prevents from over consumption of resources. Configure limit on resources used.
 - Quotas are allocated on project levels.
