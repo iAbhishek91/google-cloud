@@ -122,12 +122,12 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
   - **IAM**
     - Assign user predefined IAM roles within a project - DONE
     - IAM role assignment
-    - IAM role to accounts or Google group
+    - IAM role to accounts or Google group - DONE
     - Define custom IAM roles - DONE
     - manage service accounts - DONE
     - Assigning svc accounts to VM - DONE
     - granting access to svc account in another project - DONE
-    - viewing audit logs for project and manged services
+    - viewing audit logs for project and manged services - DONE
 
 ## Reference
 
