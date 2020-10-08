@@ -137,7 +137,7 @@ One can create a alert on monthly log bytes ingested.
 
 - Extract errors, and groups them.
 - notifies users about the errors.
-- as of now its available for APP engine, compute engine and EC2.
+- as of now its available for APP engine, compute engine and EC2 and GKE.
 - It support almost all major languages. Java, Go, NodeJS, Python, Perl etc.
 
 ## Profilers (BETA)
