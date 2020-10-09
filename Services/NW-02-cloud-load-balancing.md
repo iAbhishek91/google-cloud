@@ -16,7 +16,7 @@ LB do not require pre-warming as they are not hardware load balancer.
 
 ## Type of load balancing
 
-- **Global Load balancing**:
+- **Global HTTPS Load balancing**:
   - Layer 7(application layer) load balancing. (HTTP(s))
   - Anycast IP address
   - supports HTTP  (80 or 8080) and HTTP(s) 443
@@ -76,9 +76,12 @@ LB do not require pre-warming as they are not hardware load balancer.
 
 ## Decision tree points
 
-- Use **global load balancer**
+- Use **global HTTPs|SSL proxy|TCP proxy load balancer**
   - when user is distributed globally.
   - access application across the globe using the same IP address.
-- **Regional internal HTTP(s)**:
+  - IPV6 is supported, *act as a reverse proxy which terminate the IPv6 connection, and initiate a IPv4 connection to the internal network, and vice-versa while sending response*.
+- **Regional internal TCP**:
   - we can run and scale application behind a internal IP address.
   - accessible in load balancers region in same VPC.
+  - IPV6 is not supported
+  - RFC 1918 only
