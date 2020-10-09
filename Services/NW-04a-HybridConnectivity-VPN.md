@@ -45,6 +45,6 @@ To enable dynamic routing, both the VPN gateway must support BGP.
 
 - We need to configure *could routers*.
   - Cloud routers uses *BGP: border gateway protocol*. *BGP: decides the routes dynamically by looking at all the routes available for the packet, between both the gateways and decides the suitable one to use.* Hence this allows traffic to flow for newly created subnet.
-- For BGP: *another pair IP address* are required at each end of the VPN tunnel, these IP address should be of type link local. *with range in 169.254.0.0/16, this IP must not be part of any of the network and exclusively used for creating BGP session.*
+- For BGP: *another pair IP address* are required at each end of the VPN tunnel, these IP address should be of **type link local**. *with range in 169.254.0.0/16, this IP must not be part of any of the network and exclusively used for creating BGP session.*
 
 > Link local IP addresses are address that are valid only for communication between the network segment and broadcast domain.

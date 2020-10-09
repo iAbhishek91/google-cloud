@@ -74,6 +74,14 @@ Dedicated VMs, it will not be terminated if its required else where.
 - Create a managed instance group using template. This will create a VM which will be managed.
 - Managed instance group help you in auto scaling.
 
+### attributes while creating IG
+
+- single zone or Multi zone (recommended)
+- port number
+- instance template
+- auto scaling configuration
+- health check
+
 There are two type of instance group: managed and un managed.
 
 ### Managed Instance Group (MIG)
@@ -106,6 +114,7 @@ Autoscaling is supported for stateless MIG only.
   - CPU utilization (based on percentage)
   - HTTP load balancing (based on percentage)
   - Stackdriver monitoring metrics (many combinations)
+  - queue based workload *for example coming from cloud pub/sub*
 
 - Scale in controls
   - % of scaling or by absolute numbers of VMs
