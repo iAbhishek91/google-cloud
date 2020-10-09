@@ -40,16 +40,36 @@ LB do not require pre-warming as they are not hardware load balancer.
       - a capacity scaler: additional control that interact with balancing mode. *for operating at max of 80% CPU utilization, configure BM as 80% and capacity scaler with 100%, if you want to cut instance utilization into half the set BM to 80% and capacity scaler with 50%.*
     - any change to the network are NOT instantaneous and it takes minutes to propagate the change over the network.
   - health check recommended for load balancing scenario.
-- **Global SSL Proxy**: Layer 4 load balancing of non HTTPs SSL traffic based on load. Supported on specific port number.
-- **Global TCP Proxy**: Layer 4 non SSL TCP traffic. supported on specific port number.
-- **Regional**:
+- **Global SSL Proxy**:
+  - Layer 4 load balancing of non HTTPs SSL traffic based on load.
+  - Supported on specific port number.
+  - Terminates TLS session at load balancing layer and forwards the traffic to instance using TCP or TLS/SSL protocol. *SSL lb also forwards traffic based on the nearest instance and healthy instance available using TCP or SSL*.
+  - supports IPV4 and IPV6
+  - Supports:
+    - intelligent routing: understand capacity of the backends, health check and also location.
+    - certificate management: only need to upload customer facing certificate. rest all is taken care by google.
+    - auto security patching of the load balancer, when required
+    - SSL policies.
+- **Global TCP Proxy**:
+  - Exactly same as SSL proxy load balancer, only difference it do not perform any certificate management.
+- **Regional/ network load balancing**:
   - Load balancing of any traffic (TCP and UDP). Supports any port number.
+  - non proxy load balancer unlike Glocal SSL proxy & TCP proxy load balancer.
+  - *Backend*:
+    - can be *instance group*:
+    - or *target pool*: they are resource that defines a group of instance that receive incoming traffic from forwarding rules.
+      - the destination instance is picked by the load balancer based on the HASH of source IP:port and destination IP:port.
+      - supports only TCP and UDP
+      - should be in the same region
+      - Each target pool can have only one health check
+      - 50 target pool per project is possible.
   - it uses *maglev*, large  distributed software system.
 - **Regional internal TCP**:
   - Load balancing of traffic inside VPC.
   - Use for the internal tiers of multi-tier application.
   - Layer-4(TCP/UDP).
-  - Layer-4 uses *Andromeda*, which is google software defined network virtualization stack.
+  - Layer-4 uses *Andromeda*, which is google software defined network virtualization stack. *Generally in proxy based load balancer like TCP proxy load balancer or SSL proxy load balancer there is two connection created. One b/w client and load balancer and load balancer to the instances. However regional load balancer do for creat two connection. The client directly connects with the instance load balancer only help in between. This is possible because of Andromeda's network virtualization stack.*
+  - use case: traditional 3 tier application.
 - **Regional internal Http(s)**:
   - and Layer-7(HTTP(s))-BETA load balancers
   - Layer-7 is a proxy based load balancer
