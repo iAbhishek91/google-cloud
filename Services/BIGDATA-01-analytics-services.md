@@ -10,6 +10,7 @@ Below are the fully managed services provided by GCP which are scalable. (they a
 - managed Apache Hadoop and Apache spark/pig/hive service. *User have to request for the hadoop cluster in 90 seconds or less run their instance in dataproc. User also need to input the number and type of the compute engine VMs you control.*
 - User need to pay for the life of the hadoop cluster you create. The cost is per seconds, subject to § minute minimum billing. Note: compute engine cost is not the only cost involved with dataproc. There can be several other.
 - Easily migrate to on-premise hadoop jobs to cloud.
+- generally takes 90 seconds to start a cluster.
 - integrated with cloud dataflow and big query. Common flow, data enters GCP from pub/sub, pre-processed in dataflow and then transferred to dataproc for processing using map/reduced function. Once the data is processed the data is saved in Bg=ig Query or cloud storage.
 
 - **Usecase**

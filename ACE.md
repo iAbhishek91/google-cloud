@@ -103,21 +103,21 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
     - Working with instane groups - set autoscaling parameters, assing instance template create an instance template , removing instance group. - DONE
     - Working with management interfaces - cloud console, cloud shell, Gcloud SDK. - DONE
   - **Managing Kubernetes Engine resources**
-    - Viewing current running cluster inventory (nodes, pods services etc)
+    - Viewing current running cluster inventory (nodes, pods services etc) - DONE
     - browsing the container image repository and viewing container image details
     - working with node pools - add, edit or remove a node pool - DONE
     - working with pods - add, edit or remove pods - DONE
     - working with services - add, edit or remove services. - DONE
-    - working with stateful applications - persistent volumes, stateful sets
+    - working with stateful applications - persistent volumes, stateful sets - DONE
     - working with management interfaces - cloud console, cloud shell,cloud sdk - DONE
   - **Managing App Engine & cloud run resources**
     - Moving objects between cloud storage buckets - DONE
-    - Converting cloud storage buckets between storage classes
-    - setting object life cycle management policies for cloud storage buckets
-    - executing queries to retrieve data from data instances (cloud SQL, BigQuery, cloud Spanner, cloud Datastore, cloud Bigtable)
+    - Converting cloud storage buckets between storage classes - DONE
+    - setting object life cycle management policies for cloud storage buckets - DONE
+    - executing queries to retrieve data from data instances (cloud SQL, BigQuery, cloud Spanner, cloud Datastore, cloud Bigtable) - DONE
     - Backing up and restoring data instances
-    - Reviewing job status in cloud dataproc, cloud dataflow or big query
-    -working with management interfaces (cloud console, cloud shell, cloud SDK)
+    - Reviewing job status in cloud dataproc, cloud dataflow or big query - DONE
+    -working with management interfaces (cloud console, cloud shell, cloud SDK) - DONE
 - *Configuring access and security*
   - **IAM**
     - Assign user predefined IAM roles within a project - DONE
