@@ -2,7 +2,11 @@
 
 > NOTE: Big Query is not listed under storage section as this service sits in between data storage and data processing.
 
-Big Query is a warehouse database. Used for enterprise data warehouse.
+- Big Query is a warehouse database. Used for enterprise data warehouse.
+- fully managed, serverless, very fast, highly scalable & cost effective service.
+- *Petabyte scale*, we can load huge data in big query for analysis.
+- has SQL interface.
+- free tier to start with.
 
 BigQuery helps to running queries, loading data, and even creating and training ML models. Check out Big Queries.
 
@@ -13,9 +17,9 @@ Just create a data-set in bigQuery.
 - name: doctord_could_bills
 - location: eu-west2
 
-### Which data storage service provides data warehouse services for storing data but also offers an interactive SQL interface for querying the data
+## interact with BigQuery
 
-Big Query
+Cloud console | Cloud  shell | API
 
 ## Few examples of queries
 

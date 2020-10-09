@@ -49,6 +49,13 @@ Below are the fully managed services provided by GCP which are scalable. (they a
   - can used in fraud detection of streaming data.
   - connector for kafka makes it easy to integrate with Apache kafka stream.
 
+> It is very similar to dataproc. Do refer to the "BIGDATA-02-dataproc-or-dataflow.png"
+
+## Cloud DataPrep
+
+Data analysis tool, which is used for cleaning, exploring and preparing data for analysis and machine learning.
+Integrated partner service operated by **Trifacta**
+
 ## Cloud DataLab (analyzing and visualizing data)
 
 - Interactive tool for data **exploration**, **analysis**, **visualization** and **machine learning**.

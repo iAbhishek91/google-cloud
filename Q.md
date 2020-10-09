@@ -151,6 +151,10 @@ Yes, local SSD connects with VM using SCSI or NVMe interfaces. The interface dri
 
 To get max performance, attach multiple local devices(16 to 24), group them using logical volume. Consider using VM with 32 or more vCPU.
 
+## Which data storage service provides data warehouse services for storing data but also offers an interactive SQL interface for querying the data
+
+Big Query
+
 ## What are the ways we can mitigate VMs unavailability
 
 - **Regional MIG**: distributes your VMs across multiple zone.
