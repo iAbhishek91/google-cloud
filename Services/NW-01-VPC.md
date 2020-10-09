@@ -24,13 +24,22 @@ Here we discuss about network, subnet, IP address, DNS (refer DNS.md), routes an
 
 - Also VPC are logically isolated from each other.
 - connection between VPCs are done using VPC peering.
-- we can share and manage access b/w VPCs provided IAM, this is known as shared VPC.
+- we can also share and manage access b/w VPCs provided IAM, this is known as shared VPC.
 
 > NOTE: shared VPC are available for projects with organization. Read more about shared VPC.
 
-## VPN gateway
+### Shared VPC
 
-Its easy to connect with Google VPC as they are global. VPN gateway allow us to connect on-premise VMs.
+- Shared VPC is for sharing resource between *different project in an organization*.
+- Since this can occurs only within an organization, the *network adminstration is centralized*.
+- So Resource can securely communicate using internal IP address from the shared VPC.
+- **Design**: Shared VPC are commonly exposed to public for hosting resources and services which are public. The backend services cannot be accessed from internet as they communicate using internal IP address. Note IP address cannot be overlapping in shared VPC same as VPC peering.
+
+### VPC peering
+
+- connects two VPC using RFC 1918 between *same or different projects and same or different organization*.
+- Since this can occur b/w multiple organization, the *network adminstration is decentralized*.
+- To make a active VPC connection, VPC peering should be done from both the VPC, similar to VPN connection.
 
 ## Scope
 

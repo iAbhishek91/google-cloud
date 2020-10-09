@@ -252,6 +252,16 @@ data == "STRUCTURED"
 | Cloud VPN | Secure access to GCP resources through public internet | Cheaper option to extent local data center to cloud |
 | Peering | Directly access cloud resources with reduce egress fee | Secure access to GCP and G suite resources via direct or carrier peering |
 
+## Compare different hybrid connectivity
+
+| Connection | Provides | Capacity | Requirements | Access type | SLA |
+|---|---|---|---|---|---|
+| VPN | encrypted traffic to VPC n/w through public internet | 1.5 to 3 GBPS per tunnel | On-Premise gateway & tunnel | internal IP address| 99.9% |
+| Dedicated interconnect | direct connection to GCP | 10 to 100 GBPS per link | co-location facility | internal IP address | 99.9% |
+| Partner interconnect | via service provider, dedicated bandwidth | 50 Mbps to 10 GBPS per link | service provider | internal IP address| 99.9% |
+| Direct peering | direct connection to GCP | 10 GBPS per link | Connection to GCP PoPs | public IP address | no SLA |
+| Carrier peering | peering through service provider to googles public network | depends on svc provider | service provider| public IP address | no SLA |
+
 ## What are difference between GKE and App engine
 
 | # |K8s engine | App Engine Flexible | App Engine Standard |
