@@ -20,6 +20,10 @@ E2E (s)he should be:
 
 2 hrs
 
+## Questions
+
+50
+
 ## Pre-requisite
 
 none

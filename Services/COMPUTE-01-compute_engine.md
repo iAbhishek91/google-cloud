@@ -110,9 +110,9 @@ Autoscaling is supported for stateless MIG only.
   - Dont autoscale
   - Auto scale only up
 
-- Three matrices which supports autoscaling
+- Four matrices which supports autoscaling
   - CPU utilization (based on percentage)
-  - HTTP load balancing (based on percentage)
+  - HTTP load balancing capacity (based on percentage)
   - Stackdriver monitoring metrics (many combinations)
   - queue based workload *for example coming from cloud pub/sub*
 
