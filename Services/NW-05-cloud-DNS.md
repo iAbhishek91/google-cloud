@@ -2,7 +2,7 @@
 
 > 8.8.8.8 is worlds free DNS service provided by Google.
 
-Similarly for internal DNS, for the application that we build and deploy in GCP are supported by Cloud GCP.
+Similarly for internal DNS, for the application that we build and deploy in GCP are supported by Cloud DNS.
 
 - These DNS servers are **managed** by Google
 - HA (100% SLA) with low latency, scalable and cost effective.

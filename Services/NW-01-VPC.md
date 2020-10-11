@@ -26,11 +26,11 @@ Here we discuss about network, subnet, IP address, DNS (refer DNS.md), routes an
 - connection between VPCs are done using VPC peering.
 - we can also share and manage access b/w VPCs provided IAM, this is known as shared VPC.
 
-> NOTE: shared VPC are available for projects with organization. Read more about shared VPC.
+> NOTE: shared VPC are available for projects within organization. Read more about shared VPC.
 
 ### Shared VPC
 
-- Shared VPC is for sharing resource between *different project in an organization*.
+- Shared VPC is for sharing resource between *different project in an organization*. **NOT b/w VPC in same project**
 - Since this can occurs only within an organization, the *network adminstration is centralized*.
 - So Resource can securely communicate using internal IP address from the shared VPC.
 - **Design**: Shared VPC are commonly exposed to public for hosting resources and services which are public. The backend services cannot be accessed from internet as they communicate using internal IP address. Note IP address cannot be overlapping in shared VPC same as VPC peering.

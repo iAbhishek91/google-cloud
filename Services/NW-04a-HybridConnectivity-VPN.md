@@ -19,9 +19,9 @@
 
 ## Two type of VPN
 
-**HA VPN** : Supports Dynamic routing | HA within region with SLA of 99.9%
+**HA VPN** : Supports only Dynamic routing | HA within region with SLA of 99.9% | no forwarding rules | multiple tunnels
 
-**Classic VPN** : Supports static and dynamic routing | No HA
+**Classic VPN** : Supports static and dynamic routing | No HA | forwarding rules required | multiple tunnels not supported
 
 ## Connectivity step by step
 

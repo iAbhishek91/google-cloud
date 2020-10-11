@@ -69,6 +69,14 @@ Dedicated VMs, it will not be terminated if its required else where.
 - Using preemptible Vms with instance group will bring back the VM automatically when its preempt.
 - You can't convert a non-preemptible instance into a preemptible one. This choice must be made at VM creation.
 
+## what are shielded VMs
+
+Shielded VMs that have a security control installed on top of the service.
+
+It defends against *rootkits* and *bootkits*
+
+They help enterprise from threats like remote attacks, privilege escalation, malicious insiders.
+
 ## Instance Group
 
 - Create a managed instance group using template. This will create a VM which will be managed.

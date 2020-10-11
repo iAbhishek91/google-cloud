@@ -29,7 +29,7 @@ LB do not require pre-warming as they are not hardware load balancer.
     - in case of HTTPs, at least one signed certificate is required. Up to 10 certificates are supported.
     - **SSL certificate is also a resource**. SSL certificate keeps the certificate information. *This resource are used only with load balancers proxies such as HTTPs proxy and SSL proxy*.
   - *URL maps*: to route based on URLs to other set of instances.
-  - *Backend service*: forwards the traffic to to the backend based on the location, and resource utilization etc.
+  - *Backend service*: forwards the traffic to the backend based on the location, and resource utilization etc.
   - *Backend* (refer the image NW-02b-cloud-HTTPS-LB.png)
     - health check to be configured
     - does round robin, but can this rule can be overridden using session affinity.
