@@ -72,9 +72,9 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
     - Accessing compute quotas and requesting increase. - DONE
     - Installing the stack driver agent for monitoring and logging. - DONE
   - **GKE**
-    - Deploying k8s cluster -DONE
-    - deploying a container appliction to GKE using pods - DONE
-    - configure GKE application monitoring and logging - DONE
+    - Deploying k8s cluster -**DONE**
+    - deploying a container appliction to GKE using pods - **DONE**
+    - configure GKE application monitoring and logging - **DONE**
   - **App engine | Cloud Run | Cloud Function**
     - deploying and application, updating scaling configuration, version and traffic splitting.
     - Deploying an application that receives Google Cloud events (cloud pub/sub events, cloud storage obj change notification events)
@@ -107,13 +107,13 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
     - Working with instane groups - set autoscaling parameters, assing instance template create an instance template , removing instance group. - DONE
     - Working with management interfaces - cloud console, cloud shell, Gcloud SDK. - DONE
   - **Managing Kubernetes Engine resources**
-    - Viewing current running cluster inventory (nodes, pods services etc) - DONE
-    - browsing the container image repository and viewing container image details
-    - working with node pools - add, edit or remove a node pool - DONE
-    - working with pods - add, edit or remove pods - DONE
-    - working with services - add, edit or remove services. - DONE
-    - working with stateful applications - persistent volumes, stateful sets - DONE
-    - working with management interfaces - cloud console, cloud shell,cloud sdk - DONE
+    - Viewing current running cluster inventory (nodes, pods services etc) - **DONE**
+    - browsing the container image repository and viewing container image details- **DONE**
+    - working with node pools - add, edit or remove a node pool - **DONE**
+    - working with pods - add, edit or remove pods - **DONE**
+    - working with services - add, edit or remove services. - **DONE**
+    - working with stateful applications - persistent volumes, stateful sets - **DONE**
+    - working with management interfaces - cloud console, cloud shell,cloud sdk - **DONE**
   - **Managing App Engine & cloud run resources**
     - Moving objects between cloud storage buckets - DONE
     - Converting cloud storage buckets between storage classes - DONE
