@@ -7,6 +7,7 @@ Unique offering from GCP, this service is very similar to cloud-SQL.
 - it allows transaction consistency at global scale.
 - Synchronous and automatic replicas synchronously for high availability across globe.
 - peta bytes of capacity.
+- Support ACID(Atomicity, Consistency, Isolation and Durability) transaction.
 
 - Cloud spanner instances run in one of the three region types:
   - Read Write

@@ -2,7 +2,7 @@
 
 Load balancer are managed by google. so don't worry about scaling or managing them.
 
-**when we VM auto scaling, how does customer reaches the application** - using cloud VMs.
+**when we enable VM auto scaling, how does customer reaches the application** - using cloud Load balancer..
 
 Supports both TCP, UDP traffic, as well as HTTP/HTTPs.
 

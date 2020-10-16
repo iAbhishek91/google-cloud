@@ -300,3 +300,43 @@ When a VM is created with a matching tag, the firewall rules apply irrespective 
 - Configure health check for each VMs that are pointed by load balancers.
 - When configuring the load balancer backend section select the health check that was created on previous step.
 - validate the healthy nodes once the load balancer starts under healthy column. Thats it.
+
+-- **-----------------------** -- **-----------------------** -- **-----------------------** --
+
+## Difference between Mysql versions 5.8/5.7 and which one supported by GCP
+
+## Options for transferring 100 TB storage transfer from onprem to bigquery
+
+## First multi location onprem data to be transferred to cloud storage and then how to clean it.. I selected dataprep for clean the data
+
+## Troubleshooting why a pod is continuously restarting through which possible options like gcloud or stackdriver or VM of cluster
+
+## Managed instance compute issues. Granting access to a colleague for troubleshooting
+
+## Managed instance group with http load balancer
+
+## About BigQuery billing account and BigQuery data viewer role
+
+## Cloud identity integration with on Prem AD, saml 2.0 enabling
+
+## Terram earth question for which I remember streaming had to be processed and warehouse as BigQuery and then results to be saved to Cloud storage
+
+## Mount Kirk case study had a question about app engine for tomcat and nginx, jenkins on compute instance by scripts
+
+## Not all GCP project are PCI-DSS compliant for example Dataprep
+
+## How to copy file to a private VM
+
+## Taking snapshot from disk, creating image from snapshot and make a managed instance group in other zone
+
+## Mountkirk backend database — Datastore
+
+## Awareness about MSSQL always on
+
+## Relational databases vs non relational databases on GCP
+
+## DevOps, CICD pipeline. Spinnaker and Jenkins awareness
+
+## Mount Kirk MySQL 5.8 still appears in exam so be careful with choices particularly moving MySQL to GCP
+
+## Mount Kirk — Conversion to data store on Cloud for user profile
