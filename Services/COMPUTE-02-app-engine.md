@@ -27,7 +27,7 @@
         - specific version of runtime are supported. and runtime cant be modified.
         - No writing to local files, it need to write database instead, if it want to make data persistent. *Currently its allowed for few of the runtime like java and nodeJS, however for python its still not available*
         - All request time out at 60s
-        - Limits on third party software.
+        - Limits on third party software and binaries.
         - No support to web socket.
     - **workflow of standard**
       - Develop the application and test the web app locally using App engine SDK.

@@ -39,6 +39,7 @@ Associate Cloud Engineer(ACE) certification
 - **PII**: Personally identifiable information. Any data that can potentially identify any individual.
 - **Capex**: Capital expenditure. They are major purchases which will be used for long term. like Hardwares, offices, infra, software licenses, etc.
 - **Opex**: Operation expenses. they are day to day expenses.
+- **Conversion Rate**: The conversion rate is the number of conversions divided by the total number of visitors. For example, if an e-commerce site receives 200 visitors in a month and has 50 sales, the conversion rate would be 50 divided by 200, or 25%.
 
 ## Main modules and topics to know in depth
 
