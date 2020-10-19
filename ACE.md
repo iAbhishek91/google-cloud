@@ -43,24 +43,24 @@ Udemy: Linux Commands Line Basics(Ahmed Alkabary)
 ## Main modules and topics to know in depth
 
 - *setting up a cloud solution env*
-  - create projects (org >> folders >> projects >> resources) - DONE
+  - create projects (org >> folders >> projects >> resources) - **DONE**
   - manage users in cloud identity (manually and automated) - you need a domain to enable cloud identity.
-  - enabling APIs within project - DONE
-  - provision one or more stack driver workspace - DONE
-  - Create one or more billing accounts - DONE
-  - link project to a billing account - DONE
-  - establishing billing account - DONE
-  - setting up billing exports to estimate daily/monthly charges - DONE
+  - enabling APIs within project - **DONE**
+  - provision one or more stack driver workspace - **DONE**
+  - Create one or more billing accounts - **DONE**
+  - link project to a billing account - **DONE**
+  - establishing billing account - **DONE**
+  - setting up billing exports to estimate daily/monthly charges - **DONE**
 - *Planning and configuring a cloud solution*
-  - **planning and estimate GCP product use using price calculator** - DONE
+  - **planning and estimate GCP product use using price calculator** - **DONE**
   - **planning and configure compute resources**
-    - select appropriate compute choice for a given workload (compute engine, GKE, App Engine flexible, Cloud Run, Cloud Functions)
-    - Using preemptible VMs and custom machine types as appropriate. - DONE
+    - select appropriate compute choice for a given workload (compute engine, GKE, App Engine flexible, Cloud Run, Cloud Functions) - **DONE**
+    - Using preemptible VMs and custom machine types as appropriate. - **DONE**
   - **Planning and configuring data storage options**
-    - cloud SQL, BigQuery, Cloud Spanner Cloud Bigtable) - DONE
-    - Choose storage options (standards, nearline coldline archive) - DONE
+    - cloud SQL, BigQuery, Cloud Spanner Cloud Bigtable - **DONE**
+    - Choose storage options (standards, nearline, coldline archive) - **DONE**
   - **Planning and configuring network resources**
-    - differentiating load balancing options - DONE
+    - differentiating load balancing options - **DONE**
     - identifying resources options
     - configuring cloud DNS.
 - *Deploying and implementing a cloud solution*
