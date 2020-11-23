@@ -21,7 +21,7 @@
 
 ## Pre-requisite
 
-Associate Cloud Engineer(ACE) certification
+None
 
 ## Case studies
 
