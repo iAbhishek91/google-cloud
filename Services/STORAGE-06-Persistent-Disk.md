@@ -10,7 +10,7 @@ Types are as below:
 
 - **Zonal persistent disk**: Efficient | reliable block store | 10GB to 64TB | Max/VM: 257TB | encrypt at rest | Custom encrypt key |
 - **Regional persistent disk** HA (replicated in 2 zones) | regional block store. | 10GB to 64TB | Max/VM: 257TB | encrypt at rest | Custom encrypt key |
-- **Local SSD** High performance | transient or ephemeral (gone if VM stops or restarts) | local block storage | 375GB | encrypt at rest | No custom encrypt key | limit of 24 local SSD partition (again based on machine type), max of 8 local disk for max of 3 TB per VM. | cannot be used as boot device | need to format and mount the device before using it.
+- **Local SSD** High performance | transient or ephemeral (gone if VM stops or restarts) | local block storage | 375GB | encrypt at rest | No custom encrypt key | limit of 24 local SSD partition (again based on machine type max of 8 local disk for max of 3 TB per VM.) | cannot be used as boot device | need to format and mount the device before using it.
 - **RAM disk** These are not separately available, comes out of box with machine types. For more RAM disk selects the high memory machine type. Fastest memory in GCP | No encryption at rest
 - **Cloud storage buckets** Refer: STORAGE-0X-cloud-storage.md
 - **FileStore** Refer: STORAGE-0X-Filestore.md
@@ -28,7 +28,7 @@ Types are as below:
 
 > Due to *readonly attachment* one disk can be attached to multiple VMs where one VM write and other may read.
 
-- Both supports SSD(also known as balanced) and HDD(also known as standard).
+- Both supports SSD(also known as *balanced*) and HDD(also known as *standard*).
 
 ## Difference between a physical hard disk and physical storage
 

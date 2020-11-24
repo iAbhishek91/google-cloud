@@ -9,7 +9,7 @@
 - Backup on-demand or on schedule.
 - Scaling vertically(by changing the machine type) or horizontally(read replicas) is possible.
 
-- Users can run own instance of database services on cloud-engine(many user does that), however its better to use managed services.
+- Users can run own instance of database services on compute-engine(many user does that), however its better to use managed services.
 
 - **Google security**: firewalls, encryptions when stored in backups, tables.
 - Also cloud SQL instance may be launched within VPC for additional security.

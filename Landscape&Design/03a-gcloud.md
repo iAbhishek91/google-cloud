@@ -88,6 +88,14 @@ The output is by default pretty printed to std output.
 - provide required format (json, csv, yaml, table, value, etc...)
 - we can also use projections and filter.
 
+## SSH
+
+```sh
+ssh -i ~/.ssh/google_compute_engine abhishekdas@34.105.144.159
+connect with vs studio
+ls
+```
+
 ## Zone
 
 ```sh
@@ -154,6 +162,9 @@ gcloud sql connect demo-db # enter the password to connect.
 ## IAM
 
 ```sh
+# list all the user
+gcloud auth list
+
 # list only the services that are enabled
 gcloud services list
 gcloud services list --enabled
