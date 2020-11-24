@@ -1,6 +1,6 @@
 # Google Kubernetes engine (Hybrid)
 
-- These is Google's managed kubernetes cluster. (all the kubernetes components are managed including kubelets on worker node)
+- This is Google's managed kubernetes cluster. (all the kubernetes components are managed by Google, including kubelets on worker node)
 - production ready with HA and comes with SLA.
 - GKE cluster can be customized
   - type of nodes (type of operating system and resource power)
