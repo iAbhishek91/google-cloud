@@ -43,6 +43,9 @@ Below are the fully managed services provided by GCP which are scalable. (they a
 - it generally take input form big query database process it using map or reduced function and write it to cloud storage. Each step can be scaled independently.
 - its used for pre-processing of data as it enters cloud
 - tightly integrated with cloud Pub/Sub, BiqQuery, cloud Machine learning.
+- charged only for the time the job is executed.
+- seamlessly **transit between batch and streming data**
+- can convert **apache beam job to apache spark**
 
 - **Usage**
   - it deals with real time data. The size of the data is manged by google.
@@ -51,6 +54,26 @@ Below are the fully managed services provided by GCP which are scalable. (they a
   - connector for kafka makes it easy to integrate with Apache kafka stream.
 
 > It is very similar to dataproc. Do refer to the "BIGDATA-02-dataproc-or-dataflow.png"
+
+- **Pipeline for bounded source in dataflow**
+  - cloud storage:
+    - data are saved in buckets
+  - cloud dataflow:
+    - read from cloud storage
+    - modify the data(filter, do specific analysis)
+    - write to durable storage
+  - cloud storage/bq
+    - in the sharded data.
+
+- **Pipeline for unbounded source in dataflow**
+  - cloud pub/sub:
+    - stream of data coming to dataflow.
+  - cloud dataflow: (pipeline in dataflow can be complex) *we can introduce data processing concepts like watermark windowing, count*
+    - read from cloud storage
+    - modify the data(filter, do specific analysis)
+    - write to durable storage
+  - cloud storage/bq/bigtable/etc
+    - in the sharded data.
 
 ## Cloud DataPrep
 
@@ -75,5 +98,6 @@ Integrated partner service operated by **Trifacta**
 - integrated with services such as cloud storage(for archival) and cloud data flow(for analytics). Pub/Sub pushes the data to this services.
 - synchronous cross-zone message replication.
 - e2e encryption, IAM and Audit logging.
+- store data for 7 days, if the data is not consumed.
 
 > NOTE: Pub/Sub is not a durable data store, but can store data in staging location for temp until it goes for processing in data proc or data flow.

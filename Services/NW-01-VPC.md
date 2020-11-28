@@ -163,7 +163,7 @@ Manually created network do not have any firewall rules and hence we should be d
 
 ### Firewall rules
 
-Firewall rules protect your VM instances from an unapproved connections both inbound an outbound.
+Firewall rules protect your VM instances from an unapproved connections both inbound and outbound.
 
 VPC network function as a distributed firewall, hence firewall rules are applied to the network as a whole and not specific to instances.
 

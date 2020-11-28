@@ -20,7 +20,7 @@ There are different way to connect your network with GCP network.
 - Connects to On Premise networks to google cloud.
 - Similar to VPN but with high bandwidth and low latency because of physical connection at LAYER-2.
 - cost effective as we don't have by internet
-- Very very high SAL 99.99%
+- Very very high SLA 99.99%
 
 - **Use cases**
   - efficient when huge amount of data.

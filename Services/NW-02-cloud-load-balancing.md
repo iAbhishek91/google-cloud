@@ -54,7 +54,7 @@ LB do not require pre-warming as they are not hardware load balancer.
   - Exactly same as SSL proxy load balancer, only difference it do not perform any certificate management.
 - **Regional/ network load balancing**:
   - Load balancing of any traffic (TCP and UDP). Supports any port number.
-  - non proxy load balancer unlike Glocal SSL proxy & TCP proxy load balancer.
+  - non proxy load balancer unlike Global SSL proxy & TCP proxy load balancer.
   - *Backend*:
     - can be *instance group*:
     - or *target pool*: they are resource that defines a group of instance that receive incoming traffic from forwarding rules.
@@ -68,7 +68,7 @@ LB do not require pre-warming as they are not hardware load balancer.
   - Load balancing of traffic inside VPC.
   - Use for the internal tiers of multi-tier application.
   - Layer-4(TCP/UDP).
-  - Layer-4 uses *Andromeda*, which is google software defined network virtualization stack. *Generally in proxy based load balancer like TCP proxy load balancer or SSL proxy load balancer there is two connection created. One b/w client and load balancer and load balancer to the instances. However regional load balancer do for creat two connection. The client directly connects with the instance load balancer only help in between. This is possible because of Andromeda's network virtualization stack.*
+  - Layer-4 uses *Andromeda*, which is google software defined network virtualization stack. *Generally in proxy based load balancer like TCP proxy load balancer or SSL proxy load balancer there is two connection created. One b/w client and load balancer and load balancer to the instances. However regional load balancer do NOT create two connection. The client directly connects with the instance load balancer only help in between. This is possible because of Andromeda's network virtualization stack.*
   - use case: traditional 3 tier application.
 - **Regional internal Http(s)**:
   - and Layer-7(HTTP(s))-BETA load balancers
