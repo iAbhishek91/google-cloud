@@ -1,13 +1,7 @@
-# Host Jenkins on kubernetes cluster with PV
-
-## Create a cluster with PV
-
-name: doctord-cluster
-location: zonal
-
-## clone yaml from git into your cloud shell
+# PV an PVC in GCP GKE
 
 
+PV are dynamically created just create the PVC.
 
-## Deploy jenkins with the PVC
+https://cloud.google.com/kubernetes-engine/docs/concepts/persistent-volumes
 
