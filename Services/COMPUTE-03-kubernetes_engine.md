@@ -424,3 +424,9 @@ When we create PVC, GCP automatically creates a persistent disk of type ext4, an
 Its powerful tool can configure Istio in one click and very powerful where it can managed micro service based application.
 
 Cloud run is also integrated with GKE and built on top of Istio.
+
+## Workload-identity
+
+Simplifies authentication: Services running in GKE need to access other GCP services like cloud Pub/Sub etc. Workload-identity allows to use google's service-account as kubernetes-service-account. Read more
+
+https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
