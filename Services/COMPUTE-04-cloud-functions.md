@@ -16,6 +16,8 @@ The function have well defined entry point and exit points.
 
 Microservices can be entirely implemented in cloud functions.
 
+Can scale down to zero to planet-scale based on use.
+
 ## Use cases
 
 Event driver applications or micro-services.
