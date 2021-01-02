@@ -181,11 +181,11 @@ create **Unify vision** | foster **collaboration** | improve **communication** a
 
 ### Step-5: Releasing small change
 
-CODE >> BUILD >> INTEGRATE >> TEST >> RELEASE >> DEPLOY >> OPERATE
-`<--agile dev-->`
-`<----------------CI--------------->`
-`<-----------------------CD-------------------->`
-`<--------------------------DevOps------------------------------->`
+- CODE >> BUILD >> INTEGRATE >> TEST >> RELEASE >> DEPLOY >> OPERATE
+- `<--agile dev-->`
+- `<----------------CI--------------->`
+- `<-----------------------CD-------------------->`
+- `<--------------------------DevOps------------------------------->`
 
 **CI/CD**: CI (building, integrating and testing code within development environment).CD delivery (deployment of code to production frequently (as business opted) in a automated fashion).
 
