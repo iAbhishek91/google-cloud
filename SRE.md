@@ -183,8 +183,8 @@ create **Unify vision** | foster **collaboration** | improve **communication** a
 
 - CODE >> BUILD >> INTEGRATE >> TEST >> RELEASE >> DEPLOY >> OPERATE
 - `<--agile dev-->`
-- `<----------------CI--------------->`
-- `<-----------------------CD-------------------->`
+- `<----------------CI----------------->`
+- `<-----------------------CD--------------------->`
 - `<--------------------------DevOps------------------------------->`
 
 **CI/CD**: CI (building, integrating and testing code within development environment).CD delivery (deployment of code to production frequently (as business opted) in a automated fashion).
