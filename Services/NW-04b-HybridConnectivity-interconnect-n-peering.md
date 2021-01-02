@@ -31,6 +31,12 @@ There are different way to connect your network with GCP network.
 
 > NOTE: **Co-located facility** are geographic location defined by google where we can create dedicated interconnect. If you are not located near the co-located facility the consider **partner interconnect**. There are list of partners that are authorized and listed by Google who extends interconnect facility on behalf of google.
 
+- **VLAN Attachment** (also known as interconnect attachment) describes which LAN can connect with on premise network through interconnect.
+
+For Dedicated Interconnect, the VLAN attachment allocates a VLAN on an interconnect and associates that VLAN with the specified Cloud Router. It is possible to associate multiple, different VLAN attachments to the same Cloud Router.
+
+When you create the VLAN attachment, specify a Cloud Router that's in the region containing the subnets that you want to reach. The VLAN attachment automatically allocates a VLAN ID and BGP peering IP addresses. Use that information to configure your on-premises router and establish a BGP session with Cloud Router.
+
 ## Peering
 
 These services *Direct and Carrier peering* is required only if you require access google(G-suite, youtube, maps etc) & GCP properties.

@@ -48,7 +48,7 @@ kubectl get pods
 
 "Most services consider request **latency** — how long it takes to return a response to a request — as a key SLI. Other common SLIs include the **error rate**, often expressed as a fraction of all requests received, and system throughput, typically measured in requests per second. Another kind of SLI important to SREs is **availability**, or the fraction of the time that a service is usable. It is often defined in terms of the fraction of well-formed requests that succeed. **Durability** — the likelihood that data is be retained over a long period of time — is equally important for data storage systems. The measurements are often aggregated: i.e., raw data is collected over a measurement window and then turned into a rate, average, or percentile."
 
-Now that you have established a basic understanding, define the SLIs and SLOs for your application. Given that the application itself serves end user ecommerce traffic, it's going to be very important that user experience remains constant and that performance is good. Monitor SLIs for request latency, error rate, throughput, and availability.
+Now that you have established a basic understanding, define the SLIs and SLOs for your application. Given that the application itself serves end user e-commerce traffic, it's going to be very important that user experience remains constant and that performance is good. Monitor SLIs for request latency, error rate, throughput, and availability.
 
 It's impossible to develop SLIs without understanding how the application is built. Details are in the original repository, but for this lab, it suffices to understand that:
 

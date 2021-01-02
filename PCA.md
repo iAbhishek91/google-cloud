@@ -17,7 +17,7 @@
 
 ## Questions
 
-50
+50 - 2.4 mints each Q
 
 ## Pre-requisite
 
@@ -32,13 +32,14 @@ None
 ## Abbreviation
 
 - **ROI**: Return on investment
-- **KPI**: Key performance indicator
+- **KPI**: Key performance indicator: set of quantifiable measurements to gauge a company's overall long-term performance (strategic, financial, operational achievements). KPI are pre-defined goals. KPI can be grouped, that means in a single company each department can have their own KPI and then at the organization level they can define another KPI. It can be financial like "net profit" or transactional "loyal customer" or "quality of customer experience". However, "company moral" is not quantifiable so it cant be a valid KPI.
 - **SOC 2**: Service organization control 2. They certify providers against defined security controls.
-- **ISO 27001**: 27001 also defines certain standards that maintain security controls of a providers.
+- **ISO 27001**: 27001 also defines certain standards that maintain security controls of a providers. This is a framework used to define ISMS(Information Security management system) for any company. The main purpose is to have "Security"- only authorized user can access, "Integrity" - only authorized user can modify the data and "Availability".
 - **SoD**: Separation of duties, they are internal security controls. They are difficult and costly to achieve.
-- **PII**: Personally identifiable information. Any data that can potentially identify any individual.
+- **PII**: Personally identifiable information. Any data that can be used to potentially identify any individual. It can be direct information like "Passport Number" or indirect or quasi like "Race" or "Skin color".
 - **Capex**: Capital expenditure. They are major purchases which will be used for long term. like Hardwares, offices, infra, software licenses, etc.
 - **Opex**: Operation expenses. they are day to day expenses.
+- **TCO**: Total cost of ownership, (actual cost of the asset + cost of operation)
 - **Conversion Rate**: The conversion rate is the number of conversions divided by the total number of visitors. For example, if an e-commerce site receives 200 visitors in a month and has 50 sales, the conversion rate would be 50 divided by 200, or 25%.
 
 ## Main modules and topics to know in depth

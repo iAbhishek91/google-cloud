@@ -7,6 +7,7 @@
 - very low latency.
 - High throughput for both read and write
 - fully managed by GCP.
+- time-series data with low latency retrieval
 
 - Big table are **useful** for database with single lookup keys. They also popularly used as a persistent hash tables.
 - is popular for operational and analytical system like IoT, Financial analysis etc.

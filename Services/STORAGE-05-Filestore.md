@@ -1,7 +1,7 @@
 # File Store
 
 - Save file persistently and share between VMs.
-- Its like NAS (network attached filesystem).
+- Its like NAS (network attached storage).
 - This is mostly use when we migrate legacy application in Google cloud, which required access to file system similar to on premise environment.
 
 - Can be accessed from compute engine and GKE.

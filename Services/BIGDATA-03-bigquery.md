@@ -2,13 +2,42 @@
 
 > NOTE: Big Query is not listed under storage section as this service sits in between data storage and data processing.
 
-- Big Query is a warehouse database. Used for enterprise data warehouse.
+- Big Query is a multi-cloud warehouse database. Used for enterprise data warehouse.
 - fully managed, serverless, very fast, highly scalable & cost effective service.
 - *Petabyte scale*, we can load huge data in big query for analysis.
 - has SQL interface.
 - free tier to start with.
 
 BigQuery helps to running queries, loading data, and even creating and training ML models. Check out Big Queries.
+
+## Long term storage
+
+Big Query have a similar option like cloud storage near line, if you don't access data for 90 days then price of the data is automatically dropped to $0.01/GB.
+
+## Load data in BigQuery
+
+- Batch
+- Stream individual or in batches: consider the limitation in the .
+- Use queries to generate new data.
+- Use 3rd party.
+
+## Policy tagging for security
+
+https://cloud.google.com/bigquery/docs/best-practices-policy-tags
+
+## Exploratory queries
+
+- Explore new data coming to big-query, using exploratory queries.
+- fully managed and scalable
+- you can query big-query without knowing to know what you are looking for.
+
+## Big query
+
+- Schedule queries or transfer data from SaaS application to google bigQuery on a regular basis.
+
+For example, you want to analyse google adward real time data in bigQuery.
+
+https://cloud.google.com/bigquery-transfer/docs/reference/datatransfer/rest
 
 ## Create a data set
 

@@ -55,7 +55,11 @@ There are different objects that consist of IAM
 - They have unique email address created by GCP in specific nomenclature.
 - Service ac are associated with key-pairs used for authentication. User need to create the key, the private key is downloaded when the key creation is completed.
 - Service user are resources too and need to be managed. Roles can be applied to them.
-  - As service accounts are resource user/group can have access to use the service account. *If user or group do not have permission to access the service account, they will not be able to use the service account. Indirectly restricting the roles assigned to service accounts to the users (assume roles cant be accessed directly to user in your setup.). In another way we can say that service accounts are way to assign privileges to users*
+  - As service accounts are resource. User/group can have access to use the service account. *If user or group do not have permission to access the service account, they will not be able to use the service account. Indirectly restricting the roles assigned to service accounts to the users (assume roles cant be accessed directly to user in your setup.). In another way we can say that service accounts are way to assign privileges to users*.
+  - To put it in another language
+    - *Note that service accounts can be thought of as both a resource and as an identity*.
+    - *When thinking of the service account as an identity, you can grant a role to a service account, allowing it to access a resource (such as a project).*
+    - *When thinking of a service account as a resource, you can grant roles to other users to access or manage that service account.*
 - In case a VMs need access to other VMs, we can create service accounts and give them appropriate permissions to manage the VMs.
 - Allows to authenticate between GCP services.
 - Allow user to act with permission defined for a service account.
@@ -73,7 +77,7 @@ There are different objects that consist of IAM
 
 ### How are service account authenticated
 
-Services a/cs are authenticated using SSH keys. There are two type of keys *Google managed keys* (cant be downloaded, and automatically rotated), and *User managed keys* (can be downloaded, managed and rotated)
+Services a/cs are authenticated using SSH keys. There are two type of keys *Google managed keys* (cant be downloaded, and automatically rotated), and *User managed keys* (can be downloaded, managed and rotated).
 
 ## Access Scope
 
@@ -122,3 +126,5 @@ Below three details are required to configure the SAML SSO:
 - Use the principal of *least privilege*.
 - Audit policies in cloud audit logs.
 - Audit membership of groups used in policies.
+
+https://cloud.google.com/iam/docs/resource-hierarchy-access-control#best_practices

@@ -16,15 +16,15 @@ Similarly for internal DNS, for the application that we build and deploy in GCP 
   - Transient hostname: instance-1
 - FQDN: hostname.zone.c.project-id.internal
 - internal DNS resolver  (this are known as metadata server) helps to configure the compute engine (169.254.169.254). Try **ping 169.254.169.254**. This are used by GCP internally.
-- When a instance is recreated with same name, the DNS updates the IP address and points ot instance.
+- When a instance is recreated with same name, the DNS updates the IP address and points to the instance.
 - internally a lookup table is used to map internal address with external addresses.
 - They are configured for use on instance via DHCP.
 - Provides answer for internal and external address.
 
 - instances with external IP address can allow connections from hosts outside the projects.
-  - user can directly connect directly using external IP address.
+  - user can directly connect using external IP address.
   - admins can also publish public DNS records pointing to the instances. Public DNs records are not published automatically.
-- To publish the external IP of the instance we can either use existing DNS server of the company - outside GCP.
+- To publish the external IP of the instance we can either use existing DNS server of the company - outside GCP. OR
 - DNS zone can be hosted using cloud DNS.
 
 ## Alias IP ranges

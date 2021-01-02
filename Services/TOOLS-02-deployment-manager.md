@@ -1,7 +1,7 @@
 
 # Deploying manager
 
-Its like ansible or chef or teraform. The allow you to automate the infrastructure, repetitive task in GCP.
+Its like ansible or chef or terraform. The allow you to automate the infrastructure, repetitive task in GCP.
 
 Deployment manager helps you to create template of the task that you perform.
 
