@@ -542,6 +542,20 @@ CRE helps customers to create a reliable service on top of cloud stack.
 - Organization OKRs are graded publicly so everyone can see their progress.
 - Frequent check-ins throughout the quarter help maintain progress.
 
+### Examples of sample OKR
+
+**Objective**: Expand into the Latin American market and capture 15% of market share from our competitors in one year.
+**Key Results**:
+Conduct comprehensive LATAM market research and SWOT analysis report and deliver to senior management by Jan. 31st
+Hire and train 4 bilingual sales executives by Feb 10th
+Launch Spanish-language MVP version of product with top 5 requested features by March 1st
+
+**Objective**: Achieve record revenue while maintaining profitability
+**Key Results**:
+Increase sales of new enterprise-level accounts from $31M to $50M
+Expand add-on service revenue from existing customers from $12M to $22M
+Optimize headcount and negotiate contracts to maintain 10-11% profit margins
+
 ## Edge cases of reliability
 
 There are edge cases and everything is not linear. We don't always want or need the same level of reliability for a service.
@@ -598,9 +612,7 @@ Operation approach to increase reliability. Here we discuss other factors apart 
 
 Main **complexity of SLI** depends on the **complexity of the service**. There may be 100s of micro services supporting the services however defining 100s of SLI lead to operational paralysis and important of essence is lost in the see of noise and data.
 
-Best way to have reasonable target is to have historical monitoring data(indicates what is achievable). However sometimes there are difficulties on like historical date do not exist or business aspiration diverges from this data.
-
-Best practice: choose only 1-3 SLIs max per user journeys.
+*NOTE: Deterioration of SLI indicate something is wrong, and we can use monitoring and observability system to deep dive on the issue*.
 
 - **Choose right metric**
   - *properties of good SLI matrices*:
@@ -672,7 +684,67 @@ Best practice: choose only 1-3 SLIs max per user journeys.
         - and for mobile user this is against battery life.
       - Benefits:
         - we can include reliability of the third party systems like CDN or payment systems.
-- then select the target for the SLI >> refine an SLI implementation >>reduce SLi complexity >> Set SLI target to form SLO.
+- **then select the target for the SLI**
+  - Once we have SLI matrices and we know how to measure them to get good co-relation with user activity, we need to select a target for the SLI.
+  - Also known as *reliability target* or *SLI target* or *SLO targets*.
+  - *Its not feasible to measure user happiness directly. We have to derive it from social media, noise around the third party or by feedback loop, or from Past performance metric or logs. In google the maxim is "User expectation are strongly tied with past performance"*. **NOTE**: historical data is important to take data-driven decision while choosing the target. If historical data is NOT there start collecting the data. Its not mandatory to have SLI target defined as soon as you have SLI defined. We can collect the data and make a conscious and data-driven decision later. Then we iterate and refine the target continuously. **This way of setting SLI target is known as ACHIEVABLE SLO**. This is the best way to get started. However, **downside** of this approach is that we are only assuming that user are happy with the current status. And more over we cant validate this from anywhere.
+  - **What if you want to have you SLA from day-1**? OR **What if you know your past performance is not good enough**? OR **What if you know users are sticking with you as other competitor are worse**? OR **what if you know that your service can be far better than customer happiness**? All these scenario are based on business needs and not on past data. In this case we need to set SLO known **as ASPIRATIONAL SLO**. These SLO are not intended to meet at first but to improve iteratively.
+  - In both ASPIRATIONAL SLO and ACHIEVABLE SLO, target is the not the main intension, target is to make our service better as possible keeping our user happy.
+- **refine an SLI implementation**
+  - Technically both aspirational and achievable SLO should be same, but they diverge.
+  - Once we set the SLO target for the first time, we can then collect data from social media, user forum and support team to gather more matrices and draw the pine correctly.
+  - Initially revisit the SLO more frequently than once you have confidence you can lower the pace(google recommends at least once a year) of revisiting the pace.
+- **reduce SLI complexity**
+  - **Best practice:** choose only 1-3 SLIs max per user journeys. This is because each SLI increases the chance of conflicting signals and adds a cognitive load on ops team and resolution time.
+  - **How to maintain the above best practice if our system is too complex**:
+    - Prioritize the important user journeys. *this is very common, there are long list of SLI after considering only important one*.
+    - Second, aggregate SLI: many user interactions are common but they are considered as separate journeys. *Refer example in the aggregating section below*. **NOTE the disadvantage of aggregation**: simple aggregation works well, but when request rate differs heavily there is a risk that small but significant journey get lost in the noise. Grouping journeys based on request rate and priority can eliminate the aggregation disadvantage to some level.
+    - bucketing: this can be applied when we have different thresholds for Latency, freshness, throughput SLI for certain label(category of request), then we can also apply different threshold in the distribution. *For example: human read transaction - 400ms(annoying) & 1s(painful) | human write - 1500ms(annoying) & 2s(painful) | background transaction - 5s. NOTE: annoying is small number of request generally 50-75% and painful is 99% of the request*.
+      - last bucket you need to consider is third party(where we don't have control over) like payment gateway, identity providers etc. Most of the time user understand and probably don't hold us responsible for delay of these service. We can set a reasonable target from the past transaction. Or sometime External API comes with SLA as well so that we easily build on top of the SLI.
+- Set SLI target to form SLO.
+
+## Implementing SLO and SLI for a user journey (HANDS On)
+
+**Example Game**: *The rise of the vampires has taken a devastating toll on humanity, forcing those who survived to cluster together in the few remaining habitable regions, far from previous centers of civilization. As the leader of the tribe of survivors, you must recruit people to your cause, secure, and upgrade your settlement, raid vampire-occupied cities, and battle other tribes for control of resources*. Sounds like fun. *The game world is setup into a number of areas and varying rewards and challenges*. *Access to areas with better rewards is gated by overall playtime, settlement size, and in-game currency expenditure*. *Each area has its own leader board ranking the top tribes*. We have around 50 million 30-day active users playing, with between one million and 10 million players online at any given time. We add new world areas once a month, which drives a spike in both traffic and revenues. **The primary revenue stream stems from the exchange of real-world money for an in-game currency via in-app purchases. Players can earn currency without paying for it, by winning player-versus-player battles, playing mini-games, or over time via control of in-game resource production**. *Players can spend in-game currency on settlement upgrades, defensive emplacements for battles, and by playing a recruitment mini-game that gives them a chance of recruiting highly skilled people to their tribe*. *Our game also allows players to log in to their account via web browser and keep track of their settlement while they aren't actively playing on their device. One of the things players can do while logged in, is visiting the profile page for their in-game tribe*. The game has both a mobile client and a web UI. The mobile client makes requests for our serving infrastructure via JSON-RPC messages, transmitted over RESTful HTTP. It also maintains a web socket connection to receive game state updates. Browsers talk to the web servers via HTTPS. Leader boards are updated every five minutes. In the next video, we'll delve into a simple user journey served by this infrastructure.
+
+
+This is a **four step** process
+
+### Choose an SLI specification
+
+High level SLI specification by referring SLI menu.
+
+### Choose SLI implementation
+
+Events you want to measure and what defines good and valid events.
+Mention where and how SLI will be measured.
+
+### Walk through the user journey and look through the coverage gaps
+
+### Set aspirational SLo target based on business need
+
+## Example of aggregating SLI
+
+Google Play store
+
+- Below four are different user journey:
+  - Visiting google store home page by launching the app.
+  - Launching the app and search for store
+  - Launching the app and search by the category
+  - Launching the app and search by genre
+
+All the above journeys are similar from user perspective and can be combined to a "browse store" meta journey. Since play store is a request/response service we use availability and latency as our SLI.
+
+|journey    | good (availability) | fast (latency)  | valid |
+|   ---     |     ---             |     ---         |   --- |
+|home       |     9994            |     9866        | 10000 |
+|search     |     9989            |     9729        | 10000 |
+|category   |     9997            |     9913        | 10000 |
+|details    |     10000           |     9848        | 10000 |
+|   ---     |     ---             |     ---         |   --- |
+| total     |     39980           |     39356       | 40000 |
+|   ---     |     ---             |     ---         |   --- |
+|browse     |     99.95%          |     98.39%      |       |
 
 ## Google Free SRE books
 
