@@ -8,7 +8,7 @@ Just let cloud function take care of the function and execute when the event occ
 
 We just need to pay when the function runs in 100milliseconds intervals. No other cost involved.
 
-Trigger point ranges from varieties of options, like events on cloud storage, cloud pub/sub or an http calls.
+Trigger point ranges from varieties of options, like events on **cloud storage**, **cloud pub/sub** or an **http calls**.
 
 Cloud functions are written **in Javascript, managed in NodeJS** environments on GCP. Currently it supports Python 3, and Go as well.
 
