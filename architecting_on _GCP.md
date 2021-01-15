@@ -50,7 +50,7 @@
 
 ### write quantitative requirements using KPIs
 
-~~~~**IMPORTANT**~~~~
+-----**IMPORTANT**-----
 
 *Once the requirement are in place, along with User stories, we will move on the business side. How to measure technical and business requirement are met*.
 
@@ -65,7 +65,8 @@
 *KPI are matrices that can be used to measure success. KPI are further divided into Business KPI(defining how successful a business is) and software(how successful a software is) KPI. **Example of business KPI**: ROI in relation to product and service | EBIT(earning before interest and taxes) is companies net income(revenue - expenses) before tax and interest expenses | customer impacts like customer churn(loss of clients of customer) or employer turnover. **Example of software KPI**: Page view, User registration, click through, checkouts*
 
 *KPIs are also aligned with business objectives - commonly OKR. **How are OKR and KPI related?** KPI indicate whether you are on track to achieve the goal. Goal is a result or outcome that we want to achieve, and KPI are metric that help you track your progress. Hence KPI need to have accompanying goal. So each goal will have a KPI which will help us to track and measure progress. KPIs also have defined target, target to measure success. **Example of goal/objective and KPI:** GOAL: Increase turnover for an online store, KPI: % of conversion on the website*
-~~~~~**~~~~~~~~~~~**~~~~
+
+---------------------
 
 ### Use SMART criteria to evaluate your service requirements
 
