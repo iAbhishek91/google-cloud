@@ -493,7 +493,7 @@ Monitoring can be combined with good debugging tools like dashboard, which will 
 
 - *culture of goal settings*
   - process of goal settings
-    - look at KPI, for whom and for what you are measuring.
+    - look at KPI, for whom and for what you are measuring. *Refer to that in the `architecting_on_GCP.md`*.
     - approach, what to measure and how.
     - Example of google: OKR are treated as KPI. OKR are generally graded from 0.0 to 1.0. 1.0 indicates fully achieved OKR.
 - *transparency*: "is the only way to **demonstrate** to your employees that you believe they are **trustworthy** adults and have **good judgement**. And giving them more context about **what is happening** will enable them to do their job more **effectively**.

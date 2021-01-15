@@ -48,11 +48,43 @@
     - **S***(Small): good stories should be small. this keeps scope small, less ambiguous and small feedback loop*
     - **T***(Testable): should be testable, to verify that developer have implemented what is expected.*
 
-### write qualitative requirements using KPIs
+### write quantitative requirements using KPIs
+
+~~~~**IMPORTANT**~~~~
+
+*Once the requirement are in place, along with User stories, we will move on the business side. How to measure technical and business requirement are met*.
+
+*To manage a service well its important to **understand**, **measure** and **evaluate** the behaviors that matters. And they are done in context of business constraints. These are called Quantitative requirement. Mostly they are Time, People and Money*
+
+*Keeping the constraints in mind we can now determine what we can achieve, what we can build, what are important feature, how many potential users are there, how much data are there to be stored or processed.*
+
+*Once we know what we can build, and how virtually application will look like, we start measuring the matrices. As we know matrices mostly depends on the type of application.*
+
+*Business decision maker wants to measure the value of the project, WHY? This enable them to better support the most valuable project and not waste resource on those that are not beneficial. Hence to get the value of the project we can measure success of the project and its commonly done via KPI.*
+
+*KPI are matrices that can be used to measure success. KPI are further divided into Business KPI(defining how successful a business is) and software(how successful a software is) KPI. **Example of business KPI**: ROI in relation to product and service | EBIT(earning before interest and taxes) is companies net income(revenue - expenses) before tax and interest expenses | customer impacts like customer churn(loss of clients of customer) or employer turnover. **Example of software KPI**: Page view, User registration, click through, checkouts*
+
+*KPIs are also aligned with business objectives - commonly OKR. **How are OKR and KPI related?** KPI indicate whether you are on track to achieve the goal. Goal is a result or outcome that we want to achieve, and KPI are metric that help you track your progress. Hence KPI need to have accompanying goal. So each goal will have a KPI which will help us to track and measure progress. KPIs also have defined target, target to measure success. **Example of goal/objective and KPI:** GOAL: Increase turnover for an online store, KPI: % of conversion on the website*
+~~~~~**~~~~~~~~~~~**~~~~
 
 ### Use SMART criteria to evaluate your service requirements
 
+- *To make KPI effective use the **SMART** tool*
+  - **S***(Specific)- KPI should be very specific rather than general. For example: making website user friendly is not specific, instead it can be stated as "Section 508 accessible*.
+  - **M***(Measurable)- KPI should be monitored, the whole purpose will be defeated if NOT*.
+  - **A***(Achievable)- API should NOT be too ambitious to achieve, like 100% available, may not be possible*.
+  - **R***(Relevant)- it should be matter to user or business, it should help to achieve application goals*.
+  - **T***(Time-bound)- helps measuring the KPI,few KPI can be sensitive to time. Like availability per day or month*.
+
 ### Determine approach SLO and SLI for your services
+
+- **SLI**: *service level indicators is measure that attributes a service. They are aligned with user happiness and business goal. Its common to consider KPI as SLIs. For eg: availability, latency, durability. How we measure SLI are explained in SRE.md.*
+
+- **SLO**: *success threshold for a SLI. For eg: 99.99%*
+
+- **SLA**: *promise to external user, it comes with compensation*.
+
+*NOTE: availability is just a idea: SLI in real world can be stated as: "HTTP POST photo uploads complete within 100ms aggregated per minute". Similarly for latency, durability and error rate.*
 
 ## Micro service Design and architecture
 
